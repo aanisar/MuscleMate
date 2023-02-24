@@ -3,11 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/musclematelogologin"
+        android:id="@+id/musclematelogoregister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -17,20 +16,20 @@
         app:srcCompat="@drawable/image" />
 
     <TextView
-        android:id="@+id/emailtextview"
+        android:id="@+id/emailtextviewregister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         android:layout_marginEnd="180dp"
         android:text="Email:"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/emailedittext"
+        app:layout_constraintBottom_toTopOf="@+id/emailedittextregister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/musclematelogologin" />
+        app:layout_constraintTop_toBottomOf="@+id/musclematelogoregister" />
 
     <EditText
-        android:id="@+id/emailedittext"
+        android:id="@+id/emailedittextregister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="65dp"
@@ -39,25 +38,24 @@
         android:inputType="textEmailAddress"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/musclematelogologin" />
+        app:layout_constraintTop_toBottomOf="@+id/musclematelogoregister" />
 
     <TextView
-        android:id="@+id/passwordtextview"
+        android:id="@+id/passwordtextviewregister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="140dp"
         android:text="Password:"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/passwordedittext"
+        app:layout_constraintBottom_toTopOf="@+id/passwordedittextregister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailedittext" />
+        app:layout_constraintTop_toBottomOf="@+id/emailedittextregister" />
 
     <EditText
-        android:id="@+id/passwordedittext"
+        android:id="@+id/passwordedittextregister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="120dp"
@@ -68,28 +66,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailedittext" />
+        app:layout_constraintTop_toBottomOf="@+id/emailedittextregister" />
 
     <Button
-        android:id="@+id/loginbutton"
+        android:id="@+id/registerbuttonregister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:text="Login"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/googleloginbutton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/googleloginbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="Login With Google"
+        android:text="Register"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordedittext" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordedittextregister" />
 </androidx.constraintlayout.widget.ConstraintLayout>
