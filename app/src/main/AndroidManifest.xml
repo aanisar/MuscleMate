@@ -12,11 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GymGenie">
         <activity
+            android:name=".BrowsingActivity"
+            android:exported="false" />
+        <activity
             android:name=".ViewExerciseActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
