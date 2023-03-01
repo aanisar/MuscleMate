@@ -14,11 +14,35 @@
       },
       "oauth_client": [
         {
+          "client_id": "767315177188-7isj87go6959gt2pe4egms9aopsitkvs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lh1110642.gymgenie",
+            "certificate_hash": "6a75bd41e5d2643c709fa529256b04177eba5cd2"
+          }
+        },
+        {
           "client_id": "767315177188-9n61jqcoh0u2hcv1bel6es7g844kbj54.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.lh1110642.gymgenie",
             "certificate_hash": "bbadf3e0a877a7cadc14500eeb1ce73c63cb3b9c"
+          }
+        },
+        {
+          "client_id": "767315177188-j9euuo7d5faiud4m60qjvcidg94ahnak.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lh1110642.gymgenie",
+            "certificate_hash": "29286f5a3cfb1aca3de5d451ae18fcd852ea0ea9"
+          }
+        },
+        {
+          "client_id": "767315177188-qtq4k2bu4g58uf3t3qj060tfs331j149.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lh1110642.gymgenie",
+            "certificate_hash": "ee40f31bf480e4e561ca04e2d0f8061f0e27c1cf"
           }
         },
         {

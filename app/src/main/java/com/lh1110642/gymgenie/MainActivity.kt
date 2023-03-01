@@ -1,5 +1,6 @@
 package com.lh1110642.gymgenie
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        binding.mainloginbutton.setOnClickListener {
+            startActivity(Intent(this,LoginActivity::class.java))
+        }
+
+        binding.mainregisterbutton.setOnClickListener {
+            startActivity(Intent(this,RegisterActivity::class.java))
+        }
+
 
         var  APIMod = "?muscle=biceps  "
         var url = "https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises" + APIMod;
