@@ -18,14 +18,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        binding.mainloginbutton.setOnClickListener {
-            startActivity(Intent(this,LoginActivity::class.java))
-        }
-
-        binding.mainregisterbutton.setOnClickListener {
-            startActivity(Intent(this,RegisterActivity::class.java))
-        }
-
 
         var  APIMod = "?muscle=biceps  "
         var url = "https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises" + APIMod;
