@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GymGenie">
         <activity
+            android:name=".OtherFiltersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ExerciseListActivity"
+            android:exported="false" />
+        <activity
             android:name=".BrowsingBackActivity"
             android:exported="false" />
         <activity
@@ -34,7 +40,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"/>
+            android:exported="false" />
     </application>
 
 </manifest>
