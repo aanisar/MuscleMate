@@ -19,6 +19,7 @@ class LoginActivity : AppCompatActivity() {
         this.onSignInResult(res)
     }
 
+    //hi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
