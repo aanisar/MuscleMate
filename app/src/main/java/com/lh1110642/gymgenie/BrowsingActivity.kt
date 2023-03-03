@@ -4,8 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.firebase.ui.auth.AuthUI
 import com.google.gson.Gson
 import com.lh1110642.gymgenie.databinding.ActivityBrowsingBinding
 import com.lh1110642.gymgenie.databinding.ActivityExerciseListBinding
@@ -170,6 +173,22 @@ class BrowsingActivity : AppCompatActivity() {
         binding.swap.setOnClickListener{
             startActivity(Intent(this, BrowsingBackActivity::class.java))
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        AuthUI.getInstance()
+            .signOut(this)
+            .addOnCompleteListener {
+                startActivity(Intent(this,LoginActivity::class.java))
+            }
+        return true
+
+        return super.onOptionsItemSelected(item)
     }
 
     

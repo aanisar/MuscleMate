@@ -1,5 +1,6 @@
 package com.lh1110642.gymgenie
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +8,12 @@ import com.google.gson.Gson
 import com.lh1110642.gymgenie.databinding.ActivityExerciseListBinding
 import okhttp3.OkHttpClient
 import okhttp3.Request
+
+
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import com.firebase.ui.auth.AuthUI
 
 class ExerciseListActivity : AppCompatActivity() {
     private lateinit var adapterExercise: Adapter
@@ -30,8 +37,25 @@ class ExerciseListActivity : AppCompatActivity() {
         apiCall()
 
         //listExercise containts the api call of all excercises
-    }
 
+
+
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+            AuthUI.getInstance()
+                .signOut(this)
+                .addOnCompleteListener {
+                    startActivity(Intent(this,LoginActivity::class.java))
+                }
+            return true
+
+        return super.onOptionsItemSelected(item)
+    }
     fun apiCall(){
 
         var  APIMod = ""
