@@ -22,6 +22,7 @@ class ExerciseListActivity : AppCompatActivity() {
     var muscle = ""
     var diff = ""
     var type = ""
+    var equipment =""
 
     val listExercise = arrayOfNulls<Exercise>(10)
 
@@ -34,6 +35,7 @@ class ExerciseListActivity : AppCompatActivity() {
         muscle = intent.getStringExtra("muscle").toString()
         diff = intent.getStringExtra("difficulty").toString()
         type = intent.getStringExtra("type").toString()
+        equipment = intent.getStringExtra("equipment").toString()
         apiCall()
 
         //listExercise containts the api call of all excercises
@@ -86,6 +88,14 @@ class ExerciseListActivity : AppCompatActivity() {
                 APIMod = "?type="+type
             else{
                 APIMod += "&type="+type
+            }
+        }
+        if (equipment != "")
+        {
+            if (APIMod == "")
+                APIMod = "?type="+equipment
+            else{
+                APIMod += "&type="+equipment
             }
         }
 

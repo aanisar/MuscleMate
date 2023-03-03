@@ -35,7 +35,7 @@ class BrowsingActivity : AppCompatActivity() {
             muscle = "abdominals"
             Log.i("Muscle Picked: ", muscle)
 
-             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", ""))          }
+             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", "").putExtra("equipment", ""))             }
 
         binding.leftShoulder.setOnClickListener{
 //            Toast.makeText(baseContext, "Left Shoulder is been clicked",
@@ -44,7 +44,7 @@ class BrowsingActivity : AppCompatActivity() {
             muscle = "neck"
             Log.i("Muscle Picked: ", muscle)
             
-             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", ""))          }
+             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", "").putExtra("equipment", ""))             }
 
         binding.rightShoulder.setOnClickListener{
 //            Toast.makeText(baseContext, "Right Shoulder is been clicked",
@@ -53,7 +53,7 @@ class BrowsingActivity : AppCompatActivity() {
             muscle = "neck"
             Log.i("Muscle Picked: ", muscle)
             
-             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", ""))          }
+             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", "").putExtra("equipment", ""))             }
 
         binding.rightTrap.setOnClickListener{
 //            Toast.makeText(baseContext, "Right Trap is been clicked",
@@ -61,7 +61,7 @@ class BrowsingActivity : AppCompatActivity() {
             muscle = "traps"
             Log.i("Muscle Picked: ", muscle)
             
-             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", ""))          }
+             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", "").putExtra("equipment", ""))             }
 
         binding.leftTrap.setOnClickListener{
 //            Toast.makeText(baseContext, "Left Trap is been clicked",
@@ -69,7 +69,7 @@ class BrowsingActivity : AppCompatActivity() {
             muscle = "traps"
             Log.i("Muscle Picked: ", muscle)
             
-             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", ""))          }
+             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", "").putExtra("equipment", ""))             }
 
         binding.leftChest.setOnClickListener{
 //            Toast.makeText(baseContext, "Left Chest is been clicked",
@@ -77,7 +77,7 @@ class BrowsingActivity : AppCompatActivity() {
             muscle = "chest"
             Log.i("Muscle Picked: ", muscle)
             
-             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", ""))          }
+             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", "").putExtra("equipment", ""))             }
 
         binding.rightChest.setOnClickListener{
 //            Toast.makeText(baseContext, "Right Chest is been clicked",
@@ -85,7 +85,7 @@ class BrowsingActivity : AppCompatActivity() {
             muscle = "chest"
             Log.i("Muscle Picked: ", muscle)
             
-             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", ""))          }
+             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", "").putExtra("equipment", ""))             }
 
         binding.frontLeftForearm.setOnClickListener{
 //            Toast.makeText(baseContext, "Front Left Forearm is been clicked",
@@ -93,7 +93,7 @@ class BrowsingActivity : AppCompatActivity() {
             muscle = "forearms"
             Log.i("Muscle Picked: ", muscle)
             
-             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", ""))          }
+             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", "").putExtra("equipment", ""))             }
 
         binding.frontRightForearm.setOnClickListener{
 //            Toast.makeText(baseContext, "Front Right Forearm is been clicked",
@@ -101,7 +101,7 @@ class BrowsingActivity : AppCompatActivity() {
             muscle = "forearms"
             Log.i("Muscle Picked: ", muscle)
             
-             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", ""))          }
+             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", "").putExtra("equipment", ""))             }
 
         binding.rightBicep.setOnClickListener{
 //            Toast.makeText(baseContext, "Right Bicep is been clicked",
@@ -109,7 +109,7 @@ class BrowsingActivity : AppCompatActivity() {
             muscle = "biceps"
             Log.i("Muscle Picked: ", muscle)
             
-             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", ""))          }
+             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", "").putExtra("equipment", ""))             }
 
         binding.leftBicep.setOnClickListener{
 //            Toast.makeText(baseContext, "Left Bicep is been clicked",
@@ -117,7 +117,7 @@ class BrowsingActivity : AppCompatActivity() {
             muscle = "biceps"
             Log.i("Muscle Picked: ", muscle)
             
-             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", ""))          }
+             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", "").putExtra("equipment", ""))             }
 
         binding.leftOblique.setOnClickListener{
 //            Toast.makeText(baseContext, "Left Oblique is been clicked",
@@ -125,7 +125,7 @@ class BrowsingActivity : AppCompatActivity() {
             muscle = "abdominals"
             Log.i("Muscle Picked: ", muscle)
             
-             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", ""))          }
+             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", "").putExtra("equipment", ""))             }
 
         binding.rightOblique.setOnClickListener{
 //            Toast.makeText(baseContext, "Right Oblique is been clicked",
@@ -134,7 +134,7 @@ class BrowsingActivity : AppCompatActivity() {
             Log.i("Muscle Picked: ", muscle)
 
             
-             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", ""))          }
+             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", "").putExtra("equipment", ""))             }
 
         binding.rightQuad.setOnClickListener{
 //            Toast.makeText(baseContext, "Right Quad is been clicked",
@@ -142,7 +142,7 @@ class BrowsingActivity : AppCompatActivity() {
             muscle = "quadriceps"
             Log.i("Muscle Picked: ", muscle)
             
-             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", ""))          }
+             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", "").putExtra("equipment", ""))             }
 
         binding.leftQuad.setOnClickListener{
 //            Toast.makeText(baseContext, "Left Quad is been clicked",
@@ -150,7 +150,7 @@ class BrowsingActivity : AppCompatActivity() {
             muscle = "quadriceps"
             Log.i("Muscle Picked: ", muscle)
             
-             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", ""))          }
+             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", "").putExtra("equipment", ""))             }
 
         binding.leftCalf.setOnClickListener{
 //            Toast.makeText(baseContext, "Left Calf is been clicked",
@@ -158,7 +158,7 @@ class BrowsingActivity : AppCompatActivity() {
             muscle = "calves"
             Log.i("Muscle Picked: ", muscle)
             
-             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", ""))          }
+             startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", "").putExtra("equipment", ""))             }
 
         binding.rightCalf.setOnClickListener{
 //            Toast.makeText(baseContext, "Right Calf is been clicked",
@@ -167,7 +167,7 @@ class BrowsingActivity : AppCompatActivity() {
             Log.i("Muscle Picked: ", muscle)
             
             
-            startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", ""))        
+            startActivity(Intent(this, ExerciseListActivity::class.java).putExtra("muscle", muscle).putExtra("difficulty","").putExtra("type", "").putExtra("equipment", ""))        
         }
 
         binding.swap.setOnClickListener{
