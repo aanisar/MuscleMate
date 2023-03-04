@@ -2,6 +2,8 @@ package com.lh1110642.gymgenie
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
@@ -13,11 +15,13 @@ import okhttp3.Request
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.firebase.ui.auth.AuthUI
 
 class ExerciseListActivity : AppCompatActivity() {
     private lateinit var adapterExercise: Adapter
     var exerciseList: ArrayList<Exercise> = ArrayList()
+    var filteredExerciseList: ArrayList<Exercise> = ArrayList()
 
     var muscle = ""
     var diff = ""
@@ -37,6 +41,7 @@ class ExerciseListActivity : AppCompatActivity() {
         type = intent.getStringExtra("type").toString()
         equipment = intent.getStringExtra("equipment").toString()
         apiCall()
+
 
         //listExercise containts the api call of all excercises
 
@@ -169,4 +174,5 @@ class ExerciseListActivity : AppCompatActivity() {
             }
         }.start()
     }
+
 }
