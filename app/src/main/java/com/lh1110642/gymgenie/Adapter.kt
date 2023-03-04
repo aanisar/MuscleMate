@@ -35,13 +35,19 @@ class Adapter(private val exerciseList: ArrayList<Exercise>?,private val onViewE
         }
 
         /// for row
-        viewHolder.exerciseText.text = name
+        viewHolder.exerciseName.text = name
+        viewHolder.equipmentName.text = equipment
+        viewHolder.difficultyLevel.text = difficulty
+
+
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 
         // for row
-        val exerciseText: TextView = itemView.findViewById(R.id.rowline)
+        val exerciseName: TextView = itemView.findViewById(R.id.exercise_name)
+        val equipmentName: TextView = itemView.findViewById(R.id.equipment_name)
+        val difficultyLevel: TextView = itemView.findViewById(R.id.difficulty_level)
     }
 }
