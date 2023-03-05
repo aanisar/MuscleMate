@@ -1,0 +1,87 @@
+{
+  "project_info": {
+    "project_number": "767315177188",
+    "project_id": "gymgenielh",
+    "storage_bucket": "gymgenielh.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767315177188:android:bb39101123384ebf39c6f1",
+        "android_client_info": {
+          "package_name": "com.lh1110642.gymgenie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "767315177188-7isj87go6959gt2pe4egms9aopsitkvs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lh1110642.gymgenie",
+            "certificate_hash": "6a75bd41e5d2643c709fa529256b04177eba5cd2"
+          }
+        },
+        {
+          "client_id": "767315177188-9n61jqcoh0u2hcv1bel6es7g844kbj54.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lh1110642.gymgenie",
+            "certificate_hash": "bbadf3e0a877a7cadc14500eeb1ce73c63cb3b9c"
+          }
+        },
+        {
+          "client_id": "767315177188-j9euuo7d5faiud4m60qjvcidg94ahnak.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lh1110642.gymgenie",
+            "certificate_hash": "29286f5a3cfb1aca3de5d451ae18fcd852ea0ea9"
+          }
+        },
+        {
+          "client_id": "767315177188-l3q1qt6qi0hnu6kebf23j27ofl5cl7jb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lh1110642.gymgenie",
+            "certificate_hash": "c433db62ce319fa0cc5765c599b0a3725132ded0"
+          }
+        },
+        {
+          "client_id": "767315177188-pp19qboq3tif8mojr261i5sgu9kkrn36.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lh1110642.gymgenie",
+            "certificate_hash": "7574802d2da145d2393b5570ea02894571923069"
+          }
+        },
+        {
+          "client_id": "767315177188-qtq4k2bu4g58uf3t3qj060tfs331j149.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lh1110642.gymgenie",
+            "certificate_hash": "ee40f31bf480e4e561ca04e2d0f8061f0e27c1cf"
+          }
+        },
+        {
+          "client_id": "767315177188-qkuokpih8bk00pb48vilgoinppus5f3j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKDeMrcK04-Z8Xp1ahq5-XzNF9v_zsQyA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "767315177188-cbnp3l1k6t4ee39db4i9jjp2172c9kon.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
