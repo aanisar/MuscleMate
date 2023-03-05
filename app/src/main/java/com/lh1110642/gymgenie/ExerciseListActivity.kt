@@ -13,18 +13,23 @@ import okhttp3.Request
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Toast
 import com.firebase.ui.auth.AuthUI
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 
 class ExerciseListActivity : AppCompatActivity() {
     private lateinit var adapterExercise: Adapter
+    //init variable section
     var exerciseList: ArrayList<Exercise> = ArrayList()
-
     var muscle = ""
     var diff = ""
     var type = ""
     var equipment =""
-
-    val listExercise = arrayOfNulls<Exercise>(10)
+    var auth = Firebase.auth
+    var listExercise = arrayOfNulls<Exercise>(10)
+    var ThreadKiller = false
 
     private lateinit var binding: ActivityExerciseListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,8 +42,8 @@ class ExerciseListActivity : AppCompatActivity() {
         type = intent.getStringExtra("type").toString()
         equipment = intent.getStringExtra("equipment").toString()
         apiCall()
+        database(listExercise[0]!!) //writes to the database the given excercise
 
-        //listExercise containts the api call of all excercises
 
 
 
@@ -137,7 +142,7 @@ class ExerciseListActivity : AppCompatActivity() {
 
                // val listExercise = arrayOfNulls<Exercise>(10)
                 for (i in stringarray.indices) {
-
+                    Log.i("DB_Mason:", i.toString())
                     //Replaces the def of each exercise category, with a deliminator
                     var str = stringarray[i]
                     str = str.replace("\\\"name\\\":", "@!@")
@@ -167,6 +172,34 @@ class ExerciseListActivity : AppCompatActivity() {
             }catch (err:Error) {//if call fails
                 Log.i("error","ERRRRRRRRRRRR")
             }
+            ThreadKiller = true;
         }.start()
+
+        while (ThreadKiller == false){
+
+        }
+    }
+    fun database(excerciseForWorkout: Exercise){
+        val db = FirebaseFirestore.getInstance().collection("workout")
+
+        val id = db.document().getId()
+
+
+        //debugging not needed
+//        Log.i("DB_Mason: ","About to upload to DB")
+//        if (excerciseForWorkout != null) {
+//            Log.i("DB_Mason: ",excerciseForWorkout.getName())
+//        }
+        if (excerciseForWorkout != null) { //Gets the users ID
+            excerciseForWorkout.setuid(auth.currentUser!!.uid)
+        }
+        //Writes to the database
+        if (excerciseForWorkout != null) {
+            db.document(id).set(excerciseForWorkout)
+                .addOnSuccessListener {  Log.w("DB_Mason", "ADDED") }
+                .addOnFailureListener{ Log.w("DB_Fail", it.localizedMessage)}
+        }
+
+
     }
 }

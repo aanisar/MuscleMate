@@ -9,6 +9,8 @@ public class Exercise {
     String difficulty;
     String instructions;
 
+    String uid;
+
     public Exercise(String name, String type, String muscle, String equipment, String difficulty, String instructions) {
         this.name = name;
         this.type = type;
@@ -16,8 +18,15 @@ public class Exercise {
         this.equipment = equipment;
         this.difficulty = difficulty;
         this.instructions = instructions;
+        this.uid = "null";
     }
 
+    public String getuid() {
+        return name;
+    }
+    public void setuid(String name) {
+        this.name = name;
+    }
 
 
     public String getName() {

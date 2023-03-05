@@ -9,12 +9,13 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.firebase.ui.auth.AuthUI
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 import com.lh1110642.gymgenie.databinding.ActivityBrowsingBinding
 import com.lh1110642.gymgenie.databinding.ActivityExerciseListBinding
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import java.util.ArrayList
+import java.util.*
 
 
 class BrowsingActivity : AppCompatActivity() {
@@ -190,6 +191,8 @@ class BrowsingActivity : AppCompatActivity() {
 
         return super.onOptionsItemSelected(item)
     }
+
+
 
     
 
