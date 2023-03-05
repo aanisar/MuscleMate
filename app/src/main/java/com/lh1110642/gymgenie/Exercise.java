@@ -8,8 +8,9 @@ public class Exercise {
     String equipment;
     String difficulty;
     String instructions;
-
     String uid;
+
+    String workOutGroup;
 
     public Exercise(String name, String type, String muscle, String equipment, String difficulty, String instructions) {
         this.name = name;
@@ -18,16 +19,27 @@ public class Exercise {
         this.equipment = equipment;
         this.difficulty = difficulty;
         this.instructions = instructions;
-        this.uid = "null";
+        this.uid = "0000";
+    }
+
+   //Needed for Object decerlization, Null constructor
+    public Exercise() {
+
     }
 
     public String getuid() {
-        return name;
+        return uid;
     }
-    public void setuid(String name) {
-        this.name = name;
+    public void setuid(String str) {
+        this.uid = str;
     }
 
+    public String getWorkOutGroup() {
+        return workOutGroup;
+    }
+    public void setWorkOutGroup(String str) {
+        this.workOutGroup = str;
+    }
 
     public String getName() {
         return name;

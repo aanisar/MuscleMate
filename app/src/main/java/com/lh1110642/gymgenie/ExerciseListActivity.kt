@@ -18,6 +18,7 @@ import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import androidx.activity.viewModels
 
 class ExerciseListActivity : AppCompatActivity() {
     private lateinit var adapterExercise: Adapter
@@ -30,6 +31,7 @@ class ExerciseListActivity : AppCompatActivity() {
     var auth = Firebase.auth
     var listExercise = arrayOfNulls<Exercise>(10)
     var ThreadKiller = false
+    var DBlistExercise = arrayOfNulls<Exercise>(10)
 
     private lateinit var binding: ActivityExerciseListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +46,17 @@ class ExerciseListActivity : AppCompatActivity() {
         apiCall()
         database(listExercise[0]!!) //writes to the database the given excercise
 
+
+        val viewModel : exerciseViewModel by viewModels()
+        viewModel.getExercises().observe(this) { exercises ->
+
+            for (i in exercises.indices) {
+                //Populated DBListExercise
+                DBlistExercise[i] = exercises[i]
+            }
+
+        }
+        val end = ""
 
 
 
@@ -190,8 +203,10 @@ class ExerciseListActivity : AppCompatActivity() {
 //        if (excerciseForWorkout != null) {
 //            Log.i("DB_Mason: ",excerciseForWorkout.getName())
 //        }
+        Log.w("DB_Mason", auth.currentUser!!.uid)
         if (excerciseForWorkout != null) { //Gets the users ID
             excerciseForWorkout.setuid(auth.currentUser!!.uid)
+            excerciseForWorkout.setWorkOutGroup("") //You can use this for putting it into a workout group
         }
         //Writes to the database
         if (excerciseForWorkout != null) {
