@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+//import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
 class exerciseViewModel() : ViewModel() {
@@ -31,14 +32,14 @@ class exerciseViewModel() : ViewModel() {
 
                 documents?.let {
                     val exerciseList = ArrayList<Exercise>()
-               
+
                     for(document in documents){
                         Log.i("DB_Mason", "${document.data}")
                         val exercise = document.toObject(Exercise::class.java)
                         exerciseList.add(exercise)
                     }
                     exercises.value = exerciseList
-          
+
 
                 }
 
@@ -48,7 +49,7 @@ class exerciseViewModel() : ViewModel() {
     fun getExercises() : LiveData<List<Exercise>> {
         return exercises
     }
-  
+
 
 }
 

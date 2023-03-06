@@ -13,7 +13,9 @@ import okhttp3.Request
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -219,4 +221,14 @@ class ExerciseListActivity : AppCompatActivity() {
 
 
     }
+
+//    private fun initRecyclerView(){
+//
+//        exerciseList = ArrayList()
+//
+//        val rv = binding.exerciseListrv
+//        rv.layoutManager = LinearLayoutManager(this)
+//        adapterExercise = Adapter(exerciseList)
+//
+//    }
 }
