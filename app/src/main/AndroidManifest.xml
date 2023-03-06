@@ -14,6 +14,16 @@
         <activity
             android:name=".OtherFiltersActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".WorkoutActivity"
+            android:exported="true">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
         <activity
             android:name=".ExerciseListActivity"
             android:exported="false" />

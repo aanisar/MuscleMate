@@ -24,14 +24,15 @@ class ExerciseListActivity : AppCompatActivity() {
     private lateinit var adapterExercise: Adapter
     //init variable section
     var exerciseList: ArrayList<Exercise> = ArrayList()
-    var muscle = ""
-    var diff = ""
-    var type = ""
+    var muscle = "fds"
+    var diff = "dsfsdfsd"
+    var type = "fdsfdsfsdfsdf"
     var equipment =""
+    var name =""
     var auth = Firebase.auth
     var listExercise = arrayOfNulls<Exercise>(10)
     var ThreadKiller = false
-    var DBlistExercise = arrayOfNulls<Exercise>(10)
+
 
     private lateinit var binding: ActivityExerciseListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,16 +48,8 @@ class ExerciseListActivity : AppCompatActivity() {
         database(listExercise[0]!!) //writes to the database the given excercise
 
 
-        val viewModel : exerciseViewModel by viewModels()
-        viewModel.getExercises().observe(this) { exercises ->
 
-            for (i in exercises.indices) {
-                //Populated DBListExercise
-                DBlistExercise[i] = exercises[i]
-            }
 
-        }
-        val end = ""
 
 
 
@@ -114,6 +107,15 @@ class ExerciseListActivity : AppCompatActivity() {
                 APIMod = "?type="+equipment
             else{
                 APIMod += "&type="+equipment
+            }
+        }
+        if (name != "")
+        {
+            name.replace(" ","%20")
+            if (APIMod == "")
+                APIMod = "?name="+name
+            else{
+                APIMod += "&name="+name
             }
         }
 

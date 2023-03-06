@@ -173,6 +173,7 @@ class BrowsingActivity : AppCompatActivity() {
 
         binding.swap.setOnClickListener{
             startActivity(Intent(this, BrowsingBackActivity::class.java))
+//            startActivity(Intent(this, WorkoutActivity::class.java))
         }
     }
 
