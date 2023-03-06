@@ -21,22 +21,25 @@ import com.google.gson.Gson
 import com.lh1110642.gymgenie.databinding.ActivityExerciseListBinding
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import android.text.Editable
+import android.text.TextWatcher
 
 
 class ExerciseListActivity : AppCompatActivity() {
     private lateinit var adapterExercise: Adapter
     //init variable section
     var exerciseList: ArrayList<Exercise> = ArrayList()
-    var muscle = "fds"
-    var diff = "dsfsdfsd"
-    var type = "fdsfdsfsdfsdf"
+    var filteredExerciseList: ArrayList<Exercise> = ArrayList()
+    var muscle = ""
+    var diff = ""
+    var type = ""
     var equipment =""
     var name =""
     var auth = Firebase.auth
     var listExercise = arrayOfNulls<Exercise>(10)
     var ThreadKiller = false
 
-   //var MyRecyclerViewAdapter adapter
+    //var MyRecyclerViewAdapter adapter
     private lateinit var binding: ActivityExerciseListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +61,7 @@ class ExerciseListActivity : AppCompatActivity() {
 //        animalNames.add("Sheep")
 //        animalNames.add("Goat")
 //
- val recyclerView: RecyclerView = findViewById(R.id.recycler)
+        val recyclerView: RecyclerView = findViewById(R.id.recycler)
 //        recyclerView.setLayoutManager(LinearLayoutManager(this))
 //       var adapter = MyRecyclerViewAdapter(this, listExercise.toMutableList())
 //        adapter.setClickListener(this)
@@ -82,12 +85,12 @@ class ExerciseListActivity : AppCompatActivity() {
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-            AuthUI.getInstance()
-                .signOut(this)
-                .addOnCompleteListener {
-                    startActivity(Intent(this,LoginActivity::class.java))
-                }
-            return true
+        AuthUI.getInstance()
+            .signOut(this)
+            .addOnCompleteListener {
+                startActivity(Intent(this,LoginActivity::class.java))
+            }
+        return true
 
         return super.onOptionsItemSelected(item)
     }
@@ -177,7 +180,7 @@ class ExerciseListActivity : AppCompatActivity() {
                 stringarray[stringarray.size - 1] = stringarray[stringarray.size - 1].substring(0, stringarray[stringarray.size - 1].length - 2)
 
 
-               // val listExercise = arrayOfNulls<Exercise>(10)
+                // val listExercise = arrayOfNulls<Exercise>(10)
                 for (i in stringarray.indices) {
                     Log.i("DB_Mason:", i.toString())
                     //Replaces the def of each exercise category, with a deliminator

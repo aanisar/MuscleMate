@@ -20,9 +20,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
-        var  APIMod = "?muscle=biceps  "
+        var APIMod = "?muscle=biceps  "
         var url = "https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises" + APIMod;
         //"https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises?muscle=biceps
         Thread { //Thread that runs networking in aysnc
