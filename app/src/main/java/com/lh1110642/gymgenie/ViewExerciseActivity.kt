@@ -21,14 +21,31 @@ import com.lh1110642.gymgenie.databinding.ActivityViewExerciseBinding
             binding = ActivityViewExerciseBinding.inflate(layoutInflater)
             setContentView(binding.root)
 
-            exercise = intent.getSerializableExtra(KEY_EXERCISE_NAME) as Exercise
+//            exercise = intent.getSerializableExtra(KEY_EXERCISE_NAME) as Exercise
+//
+//            binding.name.text = exercise.name
+//            binding.equipment.text = exercise.equipment
+//            binding.difficulty.text = exercise.difficulty
+//            binding.description.text = exercise.instructions
 
-            binding.name.text = exercise.name
-            binding.equipment.text = exercise.equipment
-            binding.difficulty.text = exercise.difficulty
-            binding.description.text = exercise.instructions
+
+            //reads the intent for the values, then stores them in excercise, and sets text
+           var muscle = intent.getStringExtra("muscle").toString()
+           var diff = intent.getStringExtra("difficulty").toString()
+           var type = intent.getStringExtra("type").toString()
+           var equipment = intent.getStringExtra("equipment").toString()
+            var description = intent.getStringExtra("description").toString()
+            var name = intent.getStringExtra("name").toString()
+
+            binding.name.text = name
+            binding.equipment.text = equipment.replace("_", " ")
+            binding.difficulty.text = diff
+            binding.description.text = description
+
+            exercise = Exercise(name,type,muscle,equipment,diff,description)
 
 
+            //adds excercise to users workout group, based off button click
             binding.w1.setOnClickListener {
 //                workoutOne.add(exercise.name
                 workoutGroup = "workOutOne"

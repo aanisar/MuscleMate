@@ -75,4 +75,6 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'com.google.firebase:firebase-firestore-ktx:24.4.4'
     implementation 'com.google.firebase:firebase-firestore:24.4.4'
+
+
 }

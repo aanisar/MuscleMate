@@ -1,26 +1,27 @@
 package com.lh1110642.gymgenie
 
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.firebase.ui.auth.AuthUI
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
 import com.lh1110642.gymgenie.databinding.ActivityExerciseListBinding
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
-
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.widget.LinearLayout
-import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.firebase.ui.auth.AuthUI
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
-import androidx.activity.viewModels
 
 class ExerciseListActivity : AppCompatActivity() {
     private lateinit var adapterExercise: Adapter
@@ -35,7 +36,7 @@ class ExerciseListActivity : AppCompatActivity() {
     var listExercise = arrayOfNulls<Exercise>(10)
     var ThreadKiller = false
 
-
+   //var MyRecyclerViewAdapter adapter
     private lateinit var binding: ActivityExerciseListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,12 +50,31 @@ class ExerciseListActivity : AppCompatActivity() {
         apiCall()
         database(listExercise[0]!!) //writes to the database the given excercise
 
+//
+//        val animalNames: ArrayList<String> = ArrayList()
+//        animalNames.add("Horse")
+//        animalNames.add("Cow")
+//        animalNames.add("Camel")
+//        animalNames.add("Sheep")
+//        animalNames.add("Goat")
+//
+ val recyclerView: RecyclerView = findViewById(R.id.recycler)
+//        recyclerView.setLayoutManager(LinearLayoutManager(this))
+//       var adapter = MyRecyclerViewAdapter(this, listExercise.toMutableList())
+//        adapter.setClickListener(this)
+//        recyclerView.setAdapter(adapter)
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = listExercise.toMutableList()?.let { CustomAdapter(it) }
+        recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
 
 
+    }
 
-
-
+    fun taskSelected(task: Exercise) {
+        var intent = Intent(this, ViewExerciseActivity::class.java)
+        startActivity(intent)
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
@@ -221,6 +241,8 @@ class ExerciseListActivity : AppCompatActivity() {
 
 
     }
+
+    fun recyclerClicked(view: View) {}
 
 //    private fun initRecyclerView(){
 //
