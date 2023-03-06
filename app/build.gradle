@@ -36,6 +36,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    namespace 'com.lh1110642.gymgenie'
 }
 
 dependencies {
