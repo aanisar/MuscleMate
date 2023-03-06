@@ -1,35 +1,45 @@
 package com.lh1110642.gymgenie
 
+
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.firebase.ui.auth.AuthUI
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
 import com.lh1110642.gymgenie.databinding.ActivityExerciseListBinding
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import android.text.Editable
+import android.text.TextWatcher
 
-
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.firebase.ui.auth.AuthUI
 
 class ExerciseListActivity : AppCompatActivity() {
     private lateinit var adapterExercise: Adapter
+    //init variable section
     var exerciseList: ArrayList<Exercise> = ArrayList()
     var filteredExerciseList: ArrayList<Exercise> = ArrayList()
-
     var muscle = ""
     var diff = ""
     var type = ""
     var equipment =""
+    var name =""
+    var auth = Firebase.auth
+    var listExercise = arrayOfNulls<Exercise>(10)
+    var ThreadKiller = false
 
-    val listExercise = arrayOfNulls<Exercise>(10)
-
+    //var MyRecyclerViewAdapter adapter
     private lateinit var binding: ActivityExerciseListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,12 +51,33 @@ class ExerciseListActivity : AppCompatActivity() {
         type = intent.getStringExtra("type").toString()
         equipment = intent.getStringExtra("equipment").toString()
         apiCall()
+        database(listExercise[0]!!) //writes to the database the given excercise
+
+//
+//        val animalNames: ArrayList<String> = ArrayList()
+//        animalNames.add("Horse")
+//        animalNames.add("Cow")
+//        animalNames.add("Camel")
+//        animalNames.add("Sheep")
+//        animalNames.add("Goat")
+//
+        val recyclerView: RecyclerView = findViewById(R.id.recycler)
+//        recyclerView.setLayoutManager(LinearLayoutManager(this))
+//       var adapter = MyRecyclerViewAdapter(this, listExercise.toMutableList())
+//        adapter.setClickListener(this)
+//        recyclerView.setAdapter(adapter)
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = listExercise.toMutableList()?.let { CustomAdapter(it) }
+        recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
 
-        //listExercise containts the api call of all excercises
 
+    }
 
-
+    fun taskSelected(task: Exercise) {
+        var intent = Intent(this, ViewExerciseActivity::class.java)
+        startActivity(intent)
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
@@ -54,12 +85,12 @@ class ExerciseListActivity : AppCompatActivity() {
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-            AuthUI.getInstance()
-                .signOut(this)
-                .addOnCompleteListener {
-                    startActivity(Intent(this,LoginActivity::class.java))
-                }
-            return true
+        AuthUI.getInstance()
+            .signOut(this)
+            .addOnCompleteListener {
+                startActivity(Intent(this,LoginActivity::class.java))
+            }
+        return true
 
         return super.onOptionsItemSelected(item)
     }
@@ -103,6 +134,15 @@ class ExerciseListActivity : AppCompatActivity() {
                 APIMod += "&type="+equipment
             }
         }
+        if (name != "")
+        {
+            name.replace(" ","%20")
+            if (APIMod == "")
+                APIMod = "?name="+name
+            else{
+                APIMod += "&name="+name
+            }
+        }
 
         var url = "https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises" + APIMod;
         //"https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises?muscle=biceps
@@ -140,9 +180,9 @@ class ExerciseListActivity : AppCompatActivity() {
                 stringarray[stringarray.size - 1] = stringarray[stringarray.size - 1].substring(0, stringarray[stringarray.size - 1].length - 2)
 
 
-               // val listExercise = arrayOfNulls<Exercise>(10)
+                // val listExercise = arrayOfNulls<Exercise>(10)
                 for (i in stringarray.indices) {
-
+                    Log.i("DB_Mason:", i.toString())
                     //Replaces the def of each exercise category, with a deliminator
                     var str = stringarray[i]
                     str = str.replace("\\\"name\\\":", "@!@")
@@ -172,7 +212,48 @@ class ExerciseListActivity : AppCompatActivity() {
             }catch (err:Error) {//if call fails
                 Log.i("error","ERRRRRRRRRRRR")
             }
+            ThreadKiller = true;
         }.start()
+
+        while (ThreadKiller == false){
+
+        }
+    }
+    fun database(excerciseForWorkout: Exercise){
+        val db = FirebaseFirestore.getInstance().collection("workout")
+
+        val id = db.document().getId()
+
+
+        //debugging not needed
+//        Log.i("DB_Mason: ","About to upload to DB")
+//        if (excerciseForWorkout != null) {
+//            Log.i("DB_Mason: ",excerciseForWorkout.getName())
+//        }
+        Log.w("DB_Mason", auth.currentUser!!.uid)
+        if (excerciseForWorkout != null) { //Gets the users ID
+            excerciseForWorkout.setuid(auth.currentUser!!.uid)
+            excerciseForWorkout.setWorkOutGroup("") //You can use this for putting it into a workout group
+        }
+        //Writes to the database
+        if (excerciseForWorkout != null) {
+            db.document(id).set(excerciseForWorkout)
+                .addOnSuccessListener {  Log.w("DB_Mason", "ADDED") }
+                .addOnFailureListener{ Log.w("DB_Fail", it.localizedMessage)}
+        }
+
+
     }
 
+    fun recyclerClicked(view: View) {}
+
+//    private fun initRecyclerView(){
+//
+//        exerciseList = ArrayList()
+//
+//        val rv = binding.exerciseListrv
+//        rv.layoutManager = LinearLayoutManager(this)
+//        adapterExercise = Adapter(exerciseList)
+//
+//    }
 }
