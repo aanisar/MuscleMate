@@ -22,7 +22,7 @@ lateinit var workoutTwo: ArrayList<String>
 lateinit var workoutThree: ArrayList<String>
 lateinit var workoutFour: ArrayList<String>
 
-var DBlistExercise = arrayOfNulls<Exercise>(10)
+var DBlistExercise = arrayOfNulls<Exercise>(1000)
 class WorkoutActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityWorkoutsBinding
