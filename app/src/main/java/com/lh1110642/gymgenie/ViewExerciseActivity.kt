@@ -1,9 +1,13 @@
 package com.lh1110642.gymgenie
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
@@ -74,6 +78,22 @@ import com.lh1110642.gymgenie.databinding.ActivityViewExerciseBinding
                 Toast.makeText(baseContext, "Successfully added to Workout 4",
                     Toast.LENGTH_SHORT).show()
             }
+        }
+
+        override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+            menuInflater.inflate(R.menu.main_menu, menu)
+            return true
+        }
+        override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+            AuthUI.getInstance()
+                .signOut(this)
+                .addOnCompleteListener {
+                    startActivity(Intent(this,LoginActivity::class.java))
+                }
+            return true
+
+            return super.onOptionsItemSelected(item)
         }
 
         fun database(excerciseForWorkout: Exercise){

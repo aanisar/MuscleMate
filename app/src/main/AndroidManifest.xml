@@ -11,9 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GymGenie">
-        <activity
-            android:name=".OtherFiltersActivity"
-            android:exported="false" />
 
         <activity
             android:name=".WorkoutActivity"
