@@ -99,7 +99,7 @@ import com.lh1110642.gymgenie.databinding.ActivityViewExerciseBinding
         fun database(excerciseForWorkout: Exercise){
             val db = FirebaseFirestore.getInstance().collection("workout")
 
-            val id = db.document().getId()
+            val id = exercise.name+workoutGroup+Firebase.auth.currentUser?.uid
 
 
             //debugging not needed
@@ -125,5 +125,6 @@ import com.lh1110642.gymgenie.databinding.ActivityViewExerciseBinding
 
 
     }
+
 const val KEY_EXERCISE_NAME = "key_exercise_name"
 

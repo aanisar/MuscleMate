@@ -48,7 +48,7 @@ class ExerciseListActivity : AppCompatActivity() {
         type = intent.getStringExtra("type").toString()
         equipment = intent.getStringExtra("equipment").toString()
         apiCall()
-        database(listExercise[0]!!) //writes to the database the given excercise
+
 
 //
 //        val animalNames: ArrayList<String> = ArrayList()
