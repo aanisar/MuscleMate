@@ -48,7 +48,7 @@
         android:layout_marginBottom="611dp"
         android:text="Alphabetical"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:strokeColor="#FFFFFF" />
+        app:strokeColor="#000000" />
 
     <Button
         android:id="@+id/bodyPartButton"
