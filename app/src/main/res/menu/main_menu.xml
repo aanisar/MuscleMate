@@ -2,8 +2,22 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/item2"
+
+
+    <item android:id="@+id/anatomy"
+        android:icon="@drawable/front"
+        android:title="anatomy"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/workout"
+        android:icon="@drawable/barbell"
+        android:title="barbell"
+        app:showAsAction="always" />
+
+
+    <item android:id="@+id/signOut"
         android:icon="@drawable/ic_signout"
-        android:title="Sign Out"
+        android:title="ic_signout"
         app:showAsAction="always"/>
 </menu>

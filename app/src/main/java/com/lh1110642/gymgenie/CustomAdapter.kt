@@ -22,7 +22,7 @@ class CustomAdapter(private val data: MutableList<Exercise?>) :
         holder.difficulty.text = data[position]?.difficulty
         holder.equipment.text = data[position]?.equipment?.replace("_"," ")
         holder.type = data[position]?.type.toString()
-        holder.description = data[position]?.type.toString()
+        holder.description = data[position]?.instructions.toString()
         holder.muscel = data[position]?.muscle.toString()
     }
 

@@ -15,13 +15,14 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.lh1110642.gymgenie.databinding.ActivityWorkoutsBinding
+import kotlinx.coroutines.delay
 
 
 var listworkOutOne: ArrayList<String> = ArrayList()
 var listworkOutTwo: ArrayList<String> = ArrayList()
 var listworkOutThree: ArrayList<String> = ArrayList()
 var listworkOutFour: ArrayList<String> = ArrayList()
-
+var refresh = "false";
 lateinit var workoutOne: ArrayList<String>
 lateinit var workoutTwo: ArrayList<String>
 lateinit var workoutThree: ArrayList<String>
@@ -35,7 +36,10 @@ class WorkoutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityWorkoutsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+         refresh = intent.getStringExtra("refresh").toString()
+        if(refresh == "true"){
+            startActivity(Intent(this, WorkoutActivity::class.java).putExtra("refresh", false))
+        }
 
 
         //list view setup
@@ -43,6 +47,15 @@ class WorkoutActivity : AppCompatActivity() {
         workoutTwo = ArrayList()
         workoutThree = ArrayList()
         workoutFour = ArrayList()
+
+        listworkOutOne.clear()
+        workoutOne.clear()
+        listworkOutTwo.clear()
+        workoutTwo.clear()
+        listworkOutThree.clear()
+        workoutThree.clear()
+        listworkOutFour.clear()
+        workoutFour.clear()
 
 
         val adapter: ArrayAdapter<String?> = ArrayAdapter<String?>(
@@ -151,6 +164,12 @@ class WorkoutActivity : AppCompatActivity() {
             }
             listworkOutOne.clear()
             workoutOne.clear()
+            listworkOutTwo.clear()
+            workoutTwo.clear()
+            listworkOutThree.clear()
+            workoutThree.clear()
+            listworkOutFour.clear()
+            workoutFour.clear()
             startActivity(Intent(this, WorkoutActivity::class.java))
         }
             binding.btnClearTwo.setOnClickListener{
@@ -173,8 +192,14 @@ class WorkoutActivity : AppCompatActivity() {
 
                         }
                 }
+                listworkOutOne.clear()
+                workoutOne.clear()
                 listworkOutTwo.clear()
                 workoutTwo.clear()
+                listworkOutThree.clear()
+                workoutThree.clear()
+                listworkOutFour.clear()
+                workoutFour.clear()
                 startActivity(Intent(this, WorkoutActivity::class.java))
             }
             binding.btnClearThree.setOnClickListener{
@@ -197,8 +222,14 @@ class WorkoutActivity : AppCompatActivity() {
 
                         }
                 }
+                listworkOutOne.clear()
+                workoutOne.clear()
+                listworkOutTwo.clear()
+                workoutTwo.clear()
                 listworkOutThree.clear()
                 workoutThree.clear()
+                listworkOutFour.clear()
+                workoutFour.clear()
                 startActivity(Intent(this, WorkoutActivity::class.java))
 
             }
@@ -222,9 +253,15 @@ class WorkoutActivity : AppCompatActivity() {
 
                         }
                 }
-                listworkOutFour
+                listworkOutOne.clear()
+                workoutOne.clear()
+                listworkOutTwo.clear()
+                workoutTwo.clear()
+                listworkOutThree.clear()
+                workoutThree.clear()
+                listworkOutFour.clear()
                 workoutFour.clear()
-                startActivity(Intent(this, WorkoutActivity::class.java))
+                startActivity(Intent(this, WorkoutActivity::class.java).putExtra("refresh", "true"))
 
             }
 
@@ -237,15 +274,29 @@ class WorkoutActivity : AppCompatActivity() {
         return true
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        AuthUI.getInstance()
-            .signOut(this)
-            .addOnCompleteListener {
-                startActivity(Intent(this,LoginActivity::class.java))
+        //different menu options
+        return when (item.itemId) {
+            R.id.anatomy -> {
+                startActivity(Intent(this,BrowsingActivity::class.java))
+                return true
             }
-        return true
+            R.id.workout -> {
+                startActivity(Intent(this,WorkoutActivity::class.java))
+                return true
+            }
+            R.id.signOut -> {
+                AuthUI.getInstance()
+                    .signOut(this)
+                    .addOnCompleteListener {
+                        startActivity(Intent(this,LoginActivity::class.java))
+                    }
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
 
         return super.onOptionsItemSelected(item)
     }
+
 
 }

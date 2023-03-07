@@ -7,62 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".ExerciseListActivity">
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchBar"
-        android:layout_width="363dp"
-        android:layout_height="38dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginEnd="27dp"
-        android:layout_marginBottom="670dp" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="wrap_content"
-        android:layout_height="581dp"
+        android:layout_height="661dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="11dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="26dp"
         android:onClick="recyclerClicked"
         tools:ignore="OnClick"
         tools:listitem="@layout/row_exercise" />
-
-    <Button
-        android:id="@+id/alphabeticalButton"
-        android:layout_width="124dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="71dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="209dp"
-        android:layout_marginBottom="611dp"
-        android:text="Alphabetical"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:strokeColor="#FFFFFF" />
-
-    <Button
-        android:id="@+id/bodyPartButton"
-        android:layout_width="124dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="217dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="63dp"
-        android:layout_marginBottom="611dp"
-        android:text="Body Part"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 </RelativeLayout>

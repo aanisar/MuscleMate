@@ -182,19 +182,33 @@ class BrowsingActivity : AppCompatActivity() {
         return true
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        AuthUI.getInstance()
-            .signOut(this)
-            .addOnCompleteListener {
-                startActivity(Intent(this,LoginActivity::class.java))
+        //different menu options
+        return when (item.itemId) {
+            R.id.anatomy -> {
+                startActivity(Intent(this,BrowsingActivity::class.java))
+                return true
             }
-        return true
+            R.id.workout -> {
+                startActivity(Intent(this,WorkoutActivity::class.java))
+                return true
+            }
+            R.id.signOut -> {
+                AuthUI.getInstance()
+                    .signOut(this)
+                    .addOnCompleteListener {
+                        startActivity(Intent(this,LoginActivity::class.java))
+                    }
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
 
         return super.onOptionsItemSelected(item)
     }
 
 
 
-    
+
+
 
 }
