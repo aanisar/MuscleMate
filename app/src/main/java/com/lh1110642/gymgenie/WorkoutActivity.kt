@@ -18,10 +18,10 @@ import com.lh1110642.gymgenie.databinding.ActivityWorkoutsBinding
 import kotlinx.coroutines.delay
 
 
-var listworkOutOne: ArrayList<String> = ArrayList()
-var listworkOutTwo: ArrayList<String> = ArrayList()
-var listworkOutThree: ArrayList<String> = ArrayList()
-var listworkOutFour: ArrayList<String> = ArrayList()
+var listworkOutOne: ArrayList<Exercise> = ArrayList()
+var listworkOutTwo: ArrayList<Exercise> = ArrayList()
+var listworkOutThree: ArrayList<Exercise> = ArrayList()
+var listworkOutFour: ArrayList<Exercise> = ArrayList()
 var refresh = "false";
 lateinit var workoutOne: ArrayList<String>
 lateinit var workoutTwo: ArrayList<String>
@@ -83,7 +83,26 @@ class WorkoutActivity : AppCompatActivity() {
         binding.lvThree.adapter = adapter3
         binding.lvFour.adapter = adapter4
 
+        binding.lvOne.setOnItemClickListener { parent, view, position, id ->
+            val myIntent: Intent = Intent(view.context,ViewExerciseActivity::class.java).putExtra("muscle", listworkOutOne[position].muscle).putExtra("equipment",listworkOutOne[position].equipment).putExtra("difficulty",listworkOutOne[position].difficulty).putExtra("type", listworkOutOne[position].type).putExtra("description", listworkOutOne[position].instructions).putExtra("name", listworkOutOne[position].name)
+            view.context.startActivity(myIntent)
 
+        }
+        binding.lvTwo.setOnItemClickListener { parent, view, position, id ->
+            val myIntent: Intent = Intent(view.context,ViewExerciseActivity::class.java).putExtra("muscle", listworkOutTwo[position].muscle).putExtra("equipment",listworkOutTwo[position].equipment).putExtra("difficulty",listworkOutTwo[position].difficulty).putExtra("type", listworkOutTwo[position].type).putExtra("description", listworkOutTwo[position].instructions).putExtra("name", listworkOutTwo[position].name)
+            view.context.startActivity(myIntent)
+
+        }
+        binding.lvThree.setOnItemClickListener { parent, view, position, id ->
+            val myIntent: Intent = Intent(view.context,ViewExerciseActivity::class.java).putExtra("muscle", listworkOutThree[position].muscle).putExtra("equipment",listworkOutThree[position].equipment).putExtra("difficulty",listworkOutThree[position].difficulty).putExtra("type", listworkOutThree[position].type).putExtra("description", listworkOutThree[position].instructions).putExtra("name", listworkOutThree[position].name)
+            view.context.startActivity(myIntent)
+
+        }
+        binding.lvFour.setOnItemClickListener { parent, view, position, id ->
+            val myIntent: Intent = Intent(view.context,ViewExerciseActivity::class.java).putExtra("muscle", listworkOutFour[position].muscle).putExtra("equipment",listworkOutFour[position].equipment).putExtra("difficulty",listworkOutFour[position].difficulty).putExtra("type", listworkOutFour[position].type).putExtra("description", listworkOutFour[position].instructions).putExtra("name", listworkOutFour[position].name)
+            view.context.startActivity(myIntent)
+
+        }
 
 
         //tracks and updates the listviews
@@ -103,38 +122,38 @@ class WorkoutActivity : AppCompatActivity() {
                 name = exercises[i]?.getName().toString();
                 var workOutGroup = exercises[i]?.getWorkOutGroup()
 
-                if (workOutGroup == "workOutOne" && listworkOutOne.contains(name) == false){
-                    listworkOutOne.add(name)}
-                else if (workOutGroup == "workOutTwo"  && listworkOutTwo.contains(name) == false){
-                    listworkOutTwo.add(name)}
+                if (workOutGroup == "workOutOne" && listworkOutOne.contains(exercises[i]) == false){
+                    listworkOutOne.add(exercises[i])}
+                else if (workOutGroup == "workOutTwo"  && listworkOutTwo.contains(exercises[i]) == false){
+                    listworkOutTwo.add(exercises[i])}
 
-                else if (workOutGroup == "workOutThree"  && listworkOutThree.contains(name) == false){
-                    listworkOutThree.add(name)}
-                else if (workOutGroup == "workOutFour"  && listworkOutFour.contains(name) == false){
-                    listworkOutFour.add(name)}
+                else if (workOutGroup == "workOutThree"  && listworkOutThree.contains(exercises[i]) == false){
+                    listworkOutThree.add(exercises[i])}
+                else if (workOutGroup == "workOutFour"  && listworkOutFour.contains(exercises[i]) == false){
+                    listworkOutFour.add(exercises[i])}
 
 
             }
 
             //sorts and populates each listview
             for (i in listworkOutOne.indices) {
-                workoutOne.add(listworkOutOne[i])
+                workoutOne.add(listworkOutOne[i].name)
                 adapter.notifyDataSetChanged()
                 //workoutTwo.add("Fries")
             }
             for (i in listworkOutTwo.indices) {
 
-                workoutTwo.add(listworkOutTwo[i])
+                workoutTwo.add(listworkOutTwo[i].name)
                 adapter2.notifyDataSetChanged()
                 //workoutTwo.add("Fries")
 
             }
             for (i in listworkOutThree.indices) {
-                workoutThree.add(listworkOutThree[i])
+                workoutThree.add(listworkOutThree[i].name)
                 adapter3.notifyDataSetChanged()
             }
             for (i in listworkOutFour.indices) {
-                workoutFour.add(listworkOutFour[i])
+                workoutFour.add(listworkOutFour[i].name)
                 adapter4.notifyDataSetChanged()
             }
 
@@ -148,7 +167,7 @@ class WorkoutActivity : AppCompatActivity() {
 
             for (i in listworkOutOne.indices) {//for each object in the list
 
-                db.document(listworkOutOne[i] + "workOutOne" + userId)//delete this document name
+                db.document(listworkOutOne[i].name + "workOutOne" + userId)//delete this document name
                     .delete()
                     .addOnSuccessListener { Log.d(ContentValues.TAG, "DB_DELETE COMPLETE") }
                     .addOnFailureListener { e ->
@@ -179,7 +198,7 @@ class WorkoutActivity : AppCompatActivity() {
 
                 for (i in listworkOutTwo.indices) {
 
-                    db.document(listworkOutTwo[i] + "workOutTwo" + userId)
+                    db.document(listworkOutTwo[i].name + "workOutTwo" + userId)
                         .delete()
                         .addOnSuccessListener { Log.d(ContentValues.TAG, "DB_DELETE COMPLETE") }
                         .addOnFailureListener { e ->
@@ -209,7 +228,7 @@ class WorkoutActivity : AppCompatActivity() {
 
                 for (i in listworkOutThree.indices) {
 
-                    db.document(listworkOutThree[i] + "workOutThree" + userId)
+                    db.document(listworkOutThree[i].name + "workOutThree" + userId)
                         .delete()
                         .addOnSuccessListener { Log.d(ContentValues.TAG, "DB_DELETE COMPLETE") }
                         .addOnFailureListener { e ->
@@ -240,7 +259,7 @@ class WorkoutActivity : AppCompatActivity() {
 
                 for (i in listworkOutFour.indices) {
 
-                    db.document(listworkOutFour[i] + "workOutFour" + userId)
+                    db.document(listworkOutFour[i].name + "workOutFour" + userId)
                         .delete()
                         .addOnSuccessListener { Log.d(ContentValues.TAG, "DB_DELETE COMPLETE") }
                         .addOnFailureListener { e ->
@@ -268,6 +287,8 @@ class WorkoutActivity : AppCompatActivity() {
         }
 
     }
+
+    //
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
