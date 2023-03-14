@@ -15,6 +15,11 @@
         android:title="barbell"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/profile"
+        android:title="profile"
+        app:showAsAction="always" />
 
     <item android:id="@+id/signOut"
         android:icon="@drawable/ic_signout"
