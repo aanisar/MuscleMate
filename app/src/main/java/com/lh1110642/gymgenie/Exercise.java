@@ -12,6 +12,9 @@ public class Exercise {
 
     String workOutGroup;
 
+    String reps;
+    String sets;
+
     public Exercise(String name, String type, String muscle, String equipment, String difficulty, String instructions) {
         this.name = name;
         this.type = type;
@@ -27,6 +30,18 @@ public class Exercise {
 
     }
 
+    public String getReps() {
+        return reps;
+    }
+    public void setReps(String str) {
+        this.reps = str;
+    }
+    public String getSets() {
+        return sets;
+    }
+    public void setSets(String str) {
+        this.sets = str;
+    }
     public String getuid() {
         return uid;
     }

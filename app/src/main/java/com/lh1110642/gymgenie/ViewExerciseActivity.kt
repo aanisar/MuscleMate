@@ -13,6 +13,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.lh1110642.gymgenie.databinding.ActivityViewExerciseBinding
 
+
+var sets = 0;
+var reps = 0;
     class ViewExerciseActivity : AppCompatActivity() {
 
         private lateinit var binding: ActivityViewExerciseBinding
@@ -45,6 +48,8 @@ import com.lh1110642.gymgenie.databinding.ActivityViewExerciseBinding
             binding.equipment.text = equipment.replace("_", " ")
             binding.difficulty.text = diff
             binding.description.text = description
+            binding.lblReps.text = reps.toString()
+            binding.lblSets.text = sets.toString()
 
             exercise = Exercise(name,type,muscle,equipment,diff,description)
 
@@ -77,6 +82,24 @@ import com.lh1110642.gymgenie.databinding.ActivityViewExerciseBinding
                 database(exercise)
                 Toast.makeText(baseContext, "Successfully added to Workout 4",
                     Toast.LENGTH_SHORT).show()
+            }
+
+
+            binding.btnSetsUp.setOnClickListener{
+                sets +=1
+                binding.lblSets.text = sets.toString()
+            }
+            binding.btnSetsDown.setOnClickListener{
+                sets -=1
+                binding.lblSets.text = sets.toString()
+            }
+            binding.btnRepsUp.setOnClickListener{
+                reps +=1
+                binding.lblReps.text = reps.toString()
+            }
+            binding.btnRepsDown.setOnClickListener{
+                reps +=1
+                binding.lblReps.text = reps.toString()
             }
         }
 
