@@ -305,6 +305,10 @@ class WorkoutActivity : AppCompatActivity() {
                 startActivity(Intent(this,WorkoutActivity::class.java))
                 return true
             }
+            R.id.profile -> {
+                startActivity(Intent(this,ProfileActivity::class.java))
+                return true
+            }
             R.id.signOut -> {
                 AuthUI.getInstance()
                     .signOut(this)
