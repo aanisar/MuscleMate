@@ -1,5 +1,6 @@
 package com.lh1110642.gymgenie
 
+import android.content.ContentValues
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -44,6 +46,8 @@ var reps = 0;
            var equipment = intent.getStringExtra("equipment").toString()
             var description = intent.getStringExtra("description").toString()
             var name = intent.getStringExtra("name").toString()
+            var isWorkout = intent.getStringExtra("isWorkout").toString()
+
             reps = intent.getStringExtra("reps").toString().toInt()
             sets =  intent.getStringExtra("sets").toString().toInt()
 
@@ -57,6 +61,22 @@ var reps = 0;
 
             exercise = Exercise(name,type,muscle,equipment,diff,description)
 
+            if (isWorkout != "na"){
+                binding.btnRepsDown.isVisible = false
+                binding.btnRepsDown.isClickable = false
+
+                binding.btnRepsUp.isVisible = false
+                binding.btnRepsUp.isClickable = false
+
+                binding.btnSetsUp.isVisible = false
+                binding.btnSetsUp.isClickable = false
+
+                binding.btnSetsDown.isVisible = false
+                binding.btnSetsDown.isClickable = false
+
+                binding.btnRemove.isVisible = true
+                binding.btnRemove.isClickable = true
+            }
 
             //adds excercise to users workout group, based off button click
             binding.w1.setOnClickListener {
@@ -114,6 +134,28 @@ var reps = 0;
                 reps -=1
                 binding.lblReps.text = reps.toString()
             }
+
+            binding.btnRemove.setOnClickListener{
+                val userId = Firebase.auth.currentUser?.uid
+                val db = FirebaseFirestore.getInstance().collection("workout")
+                db.document(name+ isWorkout + userId)
+                    .delete()
+                    .addOnSuccessListener { Log.d(ContentValues.TAG, "DB_DELETE COMPLETE")
+
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w(
+                            ContentValues.TAG,
+                            "Error deleting document",
+                                e
+                            )
+
+
+                        }
+
+            }
+
+
         }
 
         override fun onCreateOptionsMenu(menu: Menu?): Boolean {

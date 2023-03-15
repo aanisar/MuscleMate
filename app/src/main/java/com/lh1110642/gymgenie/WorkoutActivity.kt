@@ -84,22 +84,22 @@ class WorkoutActivity : AppCompatActivity() {
         binding.lvFour.adapter = adapter4
 
         binding.lvOne.setOnItemClickListener { parent, view, position, id ->
-            val myIntent: Intent = Intent(view.context,ViewExerciseActivity::class.java).putExtra("muscle", listworkOutOne[position].muscle).putExtra("equipment",listworkOutOne[position].equipment).putExtra("difficulty",listworkOutOne[position].difficulty).putExtra("type", listworkOutOne[position].type).putExtra("description", listworkOutOne[position].instructions).putExtra("name", listworkOutOne[position].name).putExtra("sets", listworkOutOne[position].sets).putExtra("reps", listworkOutOne[position].reps)
+            val myIntent: Intent = Intent(view.context,ViewExerciseActivity::class.java).putExtra("muscle", listworkOutOne[position].muscle).putExtra("equipment",listworkOutOne[position].equipment).putExtra("difficulty",listworkOutOne[position].difficulty).putExtra("type", listworkOutOne[position].type).putExtra("description", listworkOutOne[position].instructions).putExtra("name", listworkOutOne[position].name).putExtra("sets", listworkOutOne[position].sets).putExtra("reps", listworkOutOne[position].reps).putExtra("isWorkout", "workOutOne")
             view.context.startActivity(myIntent)
 
         }
         binding.lvTwo.setOnItemClickListener { parent, view, position, id ->
-            val myIntent: Intent = Intent(view.context,ViewExerciseActivity::class.java).putExtra("muscle", listworkOutTwo[position].muscle).putExtra("equipment",listworkOutTwo[position].equipment).putExtra("difficulty",listworkOutTwo[position].difficulty).putExtra("type", listworkOutTwo[position].type).putExtra("description", listworkOutTwo[position].instructions).putExtra("name", listworkOutTwo[position].name).putExtra("sets", listworkOutTwo[position].sets).putExtra("reps", listworkOutTwo[position].reps)
+            val myIntent: Intent = Intent(view.context,ViewExerciseActivity::class.java).putExtra("muscle", listworkOutTwo[position].muscle).putExtra("equipment",listworkOutTwo[position].equipment).putExtra("difficulty",listworkOutTwo[position].difficulty).putExtra("type", listworkOutTwo[position].type).putExtra("description", listworkOutTwo[position].instructions).putExtra("name", listworkOutTwo[position].name).putExtra("sets", listworkOutTwo[position].sets).putExtra("reps", listworkOutTwo[position].reps).putExtra("isWorkout", "workOutTwo")
             view.context.startActivity(myIntent)
 
         }
         binding.lvThree.setOnItemClickListener { parent, view, position, id ->
-            val myIntent: Intent = Intent(view.context,ViewExerciseActivity::class.java).putExtra("muscle", listworkOutThree[position].muscle).putExtra("equipment",listworkOutThree[position].equipment).putExtra("difficulty",listworkOutThree[position].difficulty).putExtra("type", listworkOutThree[position].type).putExtra("description", listworkOutThree[position].instructions).putExtra("name", listworkOutThree[position].name).putExtra("sets", listworkOutThree[position].sets).putExtra("reps", listworkOutThree[position].reps)
+            val myIntent: Intent = Intent(view.context,ViewExerciseActivity::class.java).putExtra("muscle", listworkOutThree[position].muscle).putExtra("equipment",listworkOutThree[position].equipment).putExtra("difficulty",listworkOutThree[position].difficulty).putExtra("type", listworkOutThree[position].type).putExtra("description", listworkOutThree[position].instructions).putExtra("name", listworkOutThree[position].name).putExtra("sets", listworkOutThree[position].sets).putExtra("reps", listworkOutThree[position].reps).putExtra("isWorkout", "workOutThree")
             view.context.startActivity(myIntent)
 
         }
         binding.lvFour.setOnItemClickListener { parent, view, position, id ->
-            val myIntent: Intent = Intent(view.context,ViewExerciseActivity::class.java).putExtra("muscle", listworkOutFour[position].muscle).putExtra("equipment",listworkOutFour[position].equipment).putExtra("difficulty",listworkOutFour[position].difficulty).putExtra("type", listworkOutFour[position].type).putExtra("description", listworkOutFour[position].instructions).putExtra("name", listworkOutFour[position].name).putExtra("sets", listworkOutFour[position].sets).putExtra("reps", listworkOutFour[position].reps)
+            val myIntent: Intent = Intent(view.context,ViewExerciseActivity::class.java).putExtra("muscle", listworkOutFour[position].muscle).putExtra("equipment",listworkOutFour[position].equipment).putExtra("difficulty",listworkOutFour[position].difficulty).putExtra("type", listworkOutFour[position].type).putExtra("description", listworkOutFour[position].instructions).putExtra("name", listworkOutFour[position].name).putExtra("sets", listworkOutFour[position].sets).putExtra("reps", listworkOutFour[position].reps).putExtra("isWorkout", "workOutFour")
             view.context.startActivity(myIntent)
 
         }
@@ -122,15 +122,15 @@ class WorkoutActivity : AppCompatActivity() {
                 name = exercises[i]?.getName().toString();
                 var workOutGroup = exercises[i]?.getWorkOutGroup()
 
-                if (workOutGroup == "workOutOne" && listworkOutOne.contains(exercises[i]) == false){
-                    listworkOutOne.add(exercises[i])}
-                else if (workOutGroup == "workOutTwo"  && listworkOutTwo.contains(exercises[i]) == false){
-                    listworkOutTwo.add(exercises[i])}
-
-                else if (workOutGroup == "workOutThree"  && listworkOutThree.contains(exercises[i]) == false){
-                    listworkOutThree.add(exercises[i])}
-                else if (workOutGroup == "workOutFour"  && listworkOutFour.contains(exercises[i]) == false){
-                    listworkOutFour.add(exercises[i])}
+                if (workOutGroup == "workOutOne" && listworkOutOne.contains(exercises[i]) == false) {
+                    listworkOutOne.add(exercises[i])
+                } else if (workOutGroup == "workOutTwo" && listworkOutTwo.contains(exercises[i]) == false) {
+                    listworkOutTwo.add(exercises[i])
+                } else if (workOutGroup == "workOutThree" && listworkOutThree.contains(exercises[i]) == false) {
+                    listworkOutThree.add(exercises[i])
+                } else if (workOutGroup == "workOutFour" && listworkOutFour.contains(exercises[i]) == false) {
+                    listworkOutFour.add(exercises[i])
+                }
 
 
             }
@@ -159,39 +159,39 @@ class WorkoutActivity : AppCompatActivity() {
 
 
             //clears workout groups
-        binding.btnClearOne.setOnClickListener{
+            binding.btnClearOne.setOnClickListener {
 
-            //db setup
-            val userId = Firebase.auth.currentUser?.uid
-            val db = FirebaseFirestore.getInstance().collection("workout")
+                //db setup
+                val userId = Firebase.auth.currentUser?.uid
+                val db = FirebaseFirestore.getInstance().collection("workout")
 
-            for (i in listworkOutOne.indices) {//for each object in the list
+                for (i in listworkOutOne.indices) {//for each object in the list
 
-                db.document(listworkOutOne[i].name + "workOutOne" + userId)//delete this document name
-                    .delete()
-                    .addOnSuccessListener { Log.d(ContentValues.TAG, "DB_DELETE COMPLETE") }
-                    .addOnFailureListener { e ->
-                        Log.w(
-                            ContentValues.TAG,
-                            "Error deleting document",
-                            e
-                        )
+                    db.document(listworkOutOne[i].name + "workOutOne" + userId)//delete this document name
+                        .delete()
+                        .addOnSuccessListener { Log.d(ContentValues.TAG, "DB_DELETE COMPLETE") }
+                        .addOnFailureListener { e ->
+                            Log.w(
+                                ContentValues.TAG,
+                                "Error deleting document",
+                                e
+                            )
 
 
-                    }
+                        }
 
+                }
+                listworkOutOne.clear()
+                workoutOne.clear()
+                listworkOutTwo.clear()
+                workoutTwo.clear()
+                listworkOutThree.clear()
+                workoutThree.clear()
+                listworkOutFour.clear()
+                workoutFour.clear()
+                startActivity(Intent(this, WorkoutActivity::class.java))
             }
-            listworkOutOne.clear()
-            workoutOne.clear()
-            listworkOutTwo.clear()
-            workoutTwo.clear()
-            listworkOutThree.clear()
-            workoutThree.clear()
-            listworkOutFour.clear()
-            workoutFour.clear()
-            startActivity(Intent(this, WorkoutActivity::class.java))
-        }
-            binding.btnClearTwo.setOnClickListener{
+            binding.btnClearTwo.setOnClickListener {
 
                 val userId = Firebase.auth.currentUser?.uid
                 val db = FirebaseFirestore.getInstance().collection("workout")
@@ -221,7 +221,7 @@ class WorkoutActivity : AppCompatActivity() {
                 workoutFour.clear()
                 startActivity(Intent(this, WorkoutActivity::class.java))
             }
-            binding.btnClearThree.setOnClickListener{
+            binding.btnClearThree.setOnClickListener {
 
                 val userId = Firebase.auth.currentUser?.uid
                 val db = FirebaseFirestore.getInstance().collection("workout")
@@ -252,7 +252,7 @@ class WorkoutActivity : AppCompatActivity() {
                 startActivity(Intent(this, WorkoutActivity::class.java))
 
             }
-            binding.btnClearFour.setOnClickListener{
+            binding.btnClearFour.setOnClickListener {
 
                 val userId = Firebase.auth.currentUser?.uid
                 val db = FirebaseFirestore.getInstance().collection("workout")

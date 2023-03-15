@@ -56,7 +56,7 @@ class CustomAdapter(private val data: MutableList<Exercise?>) :
 //                Toast.LENGTH_SHORT
 //            ).show()
             //opens up new scene
-            val myIntent: Intent = Intent(view.context,ViewExerciseActivity::class.java).putExtra("muscle", muscel).putExtra("equipment",equipment.text).putExtra("difficulty",difficulty.text).putExtra("type", type).putExtra("description", description).putExtra("name", name.text).putExtra("sets", "0").putExtra("reps", "0")
+            val myIntent: Intent = Intent(view.context,ViewExerciseActivity::class.java).putExtra("muscle", muscel).putExtra("equipment",equipment.text).putExtra("difficulty",difficulty.text).putExtra("type", type).putExtra("description", description).putExtra("name", name.text).putExtra("sets", "0").putExtra("reps", "0").putExtra("isWorkout", "na")
             view.context.startActivity(myIntent)
 
         }
