@@ -1,6 +1,7 @@
 package com.lh1110642.gymgenie
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -43,6 +44,9 @@ var reps = 0;
            var equipment = intent.getStringExtra("equipment").toString()
             var description = intent.getStringExtra("description").toString()
             var name = intent.getStringExtra("name").toString()
+            reps = intent.getStringExtra("reps").toString().toInt()
+            sets =  intent.getStringExtra("sets").toString().toInt()
+
 
             binding.name.text = name
             binding.equipment.text = equipment.replace("_", " ")
@@ -82,9 +86,18 @@ var reps = 0;
                 database(exercise)
                 Toast.makeText(baseContext, "Successfully added to Workout 4",
                     Toast.LENGTH_SHORT).show()
+
+
             }
 
+            binding.btnGoogle.setOnClickListener{
 
+                val uri: Uri =
+                    Uri.parse("https://www.google.com/search?tbm=isch&q="+name +" exercise gif") // missing 'http://' will cause crashed
+
+                val intent = Intent(Intent.ACTION_VIEW, uri)
+                startActivity(intent)
+            }
             binding.btnSetsUp.setOnClickListener{
                 sets +=1
                 binding.lblSets.text = sets.toString()
@@ -98,7 +111,7 @@ var reps = 0;
                 binding.lblReps.text = reps.toString()
             }
             binding.btnRepsDown.setOnClickListener{
-                reps +=1
+                reps -=1
                 binding.lblReps.text = reps.toString()
             }
         }
@@ -150,6 +163,8 @@ var reps = 0;
             }
             //Writes to the database
             if (excerciseForWorkout != null) {
+                exercise.setReps(reps.toString())
+                exercise.setSets(sets.toString())
                 db.document(id).set(excerciseForWorkout)
                     .addOnSuccessListener {  Log.w("DB_Mason", "ADDED") }
                     .addOnFailureListener{ Log.w("DB_Fail", it.localizedMessage)}
@@ -162,5 +177,5 @@ var reps = 0;
 
     }
 
-const val KEY_EXERCISE_NAME = "key_exercise_name"
+
 

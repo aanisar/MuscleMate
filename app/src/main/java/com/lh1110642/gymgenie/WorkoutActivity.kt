@@ -84,22 +84,22 @@ class WorkoutActivity : AppCompatActivity() {
         binding.lvFour.adapter = adapter4
 
         binding.lvOne.setOnItemClickListener { parent, view, position, id ->
-            val myIntent: Intent = Intent(view.context,ViewExerciseActivity::class.java).putExtra("muscle", listworkOutOne[position].muscle).putExtra("equipment",listworkOutOne[position].equipment).putExtra("difficulty",listworkOutOne[position].difficulty).putExtra("type", listworkOutOne[position].type).putExtra("description", listworkOutOne[position].instructions).putExtra("name", listworkOutOne[position].name)
+            val myIntent: Intent = Intent(view.context,ViewExerciseActivity::class.java).putExtra("muscle", listworkOutOne[position].muscle).putExtra("equipment",listworkOutOne[position].equipment).putExtra("difficulty",listworkOutOne[position].difficulty).putExtra("type", listworkOutOne[position].type).putExtra("description", listworkOutOne[position].instructions).putExtra("name", listworkOutOne[position].name).putExtra("sets", listworkOutOne[position].sets).putExtra("reps", listworkOutOne[position].reps)
             view.context.startActivity(myIntent)
 
         }
         binding.lvTwo.setOnItemClickListener { parent, view, position, id ->
-            val myIntent: Intent = Intent(view.context,ViewExerciseActivity::class.java).putExtra("muscle", listworkOutTwo[position].muscle).putExtra("equipment",listworkOutTwo[position].equipment).putExtra("difficulty",listworkOutTwo[position].difficulty).putExtra("type", listworkOutTwo[position].type).putExtra("description", listworkOutTwo[position].instructions).putExtra("name", listworkOutTwo[position].name)
+            val myIntent: Intent = Intent(view.context,ViewExerciseActivity::class.java).putExtra("muscle", listworkOutTwo[position].muscle).putExtra("equipment",listworkOutTwo[position].equipment).putExtra("difficulty",listworkOutTwo[position].difficulty).putExtra("type", listworkOutTwo[position].type).putExtra("description", listworkOutTwo[position].instructions).putExtra("name", listworkOutTwo[position].name).putExtra("sets", listworkOutTwo[position].sets).putExtra("reps", listworkOutTwo[position].reps)
             view.context.startActivity(myIntent)
 
         }
         binding.lvThree.setOnItemClickListener { parent, view, position, id ->
-            val myIntent: Intent = Intent(view.context,ViewExerciseActivity::class.java).putExtra("muscle", listworkOutThree[position].muscle).putExtra("equipment",listworkOutThree[position].equipment).putExtra("difficulty",listworkOutThree[position].difficulty).putExtra("type", listworkOutThree[position].type).putExtra("description", listworkOutThree[position].instructions).putExtra("name", listworkOutThree[position].name)
+            val myIntent: Intent = Intent(view.context,ViewExerciseActivity::class.java).putExtra("muscle", listworkOutThree[position].muscle).putExtra("equipment",listworkOutThree[position].equipment).putExtra("difficulty",listworkOutThree[position].difficulty).putExtra("type", listworkOutThree[position].type).putExtra("description", listworkOutThree[position].instructions).putExtra("name", listworkOutThree[position].name).putExtra("sets", listworkOutThree[position].sets).putExtra("reps", listworkOutThree[position].reps)
             view.context.startActivity(myIntent)
 
         }
         binding.lvFour.setOnItemClickListener { parent, view, position, id ->
-            val myIntent: Intent = Intent(view.context,ViewExerciseActivity::class.java).putExtra("muscle", listworkOutFour[position].muscle).putExtra("equipment",listworkOutFour[position].equipment).putExtra("difficulty",listworkOutFour[position].difficulty).putExtra("type", listworkOutFour[position].type).putExtra("description", listworkOutFour[position].instructions).putExtra("name", listworkOutFour[position].name)
+            val myIntent: Intent = Intent(view.context,ViewExerciseActivity::class.java).putExtra("muscle", listworkOutFour[position].muscle).putExtra("equipment",listworkOutFour[position].equipment).putExtra("difficulty",listworkOutFour[position].difficulty).putExtra("type", listworkOutFour[position].type).putExtra("description", listworkOutFour[position].instructions).putExtra("name", listworkOutFour[position].name).putExtra("sets", listworkOutFour[position].sets).putExtra("reps", listworkOutFour[position].reps)
             view.context.startActivity(myIntent)
 
         }
