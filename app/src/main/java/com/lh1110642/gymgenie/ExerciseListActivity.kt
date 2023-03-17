@@ -1,14 +1,13 @@
 package com.lh1110642.gymgenie
 
-
+import android.R
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,8 +20,6 @@ import com.google.gson.Gson
 import com.lh1110642.gymgenie.databinding.ActivityExerciseListBinding
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import android.text.Editable
-import android.text.TextWatcher
 
 
 class ExerciseListActivity : AppCompatActivity() {
@@ -52,6 +49,15 @@ class ExerciseListActivity : AppCompatActivity() {
         equipment = intent.getStringExtra("equipment").toString()
         apiCall()
 
+        val adapter = ArrayAdapter.createFromResource(
+            this,
+            com.lh1110642.gymgenie.R.array.numbers,
+            R.layout.simple_spinner_item
+        )
+        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+
+        binding.equipmentSpinner.setAdapter(adapter)
+
 
 //
 //        val animalNames: ArrayList<String> = ArrayList()
@@ -61,7 +67,7 @@ class ExerciseListActivity : AppCompatActivity() {
 //        animalNames.add("Sheep")
 //        animalNames.add("Goat")
 //
-        val recyclerView: RecyclerView = findViewById(R.id.recycler)
+        val recyclerView: RecyclerView = findViewById(com.lh1110642.gymgenie.R.id.recycler)
 //        recyclerView.setLayoutManager(LinearLayoutManager(this))
 //       var adapter = MyRecyclerViewAdapter(this, listExercise.toMutableList())
 //        adapter.setClickListener(this)
@@ -80,21 +86,21 @@ class ExerciseListActivity : AppCompatActivity() {
         startActivity(intent)
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
+        menuInflater.inflate(com.lh1110642.gymgenie.R.menu.main_menu, menu)
         return true
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         //different menu options
         return when (item.itemId) {
-            R.id.anatomy -> {
+            com.lh1110642.gymgenie.R.id.anatomy -> {
                 startActivity(Intent(this,BrowsingActivity::class.java))
                 return true
             }
-            R.id.workout -> {
+            com.lh1110642.gymgenie.R.id.workout -> {
                 startActivity(Intent(this,WorkoutActivity::class.java))
                 return true
             }
-            R.id.signOut -> {
+            com.lh1110642.gymgenie.R.id.signOut -> {
                 AuthUI.getInstance()
                     .signOut(this)
                     .addOnCompleteListener {
