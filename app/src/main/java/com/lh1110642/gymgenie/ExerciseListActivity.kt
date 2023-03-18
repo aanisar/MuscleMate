@@ -7,7 +7,9 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,7 +24,8 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 
 
-class ExerciseListActivity : AppCompatActivity() {
+
+class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private lateinit var adapterExercise: Adapter
     //init variable section
     var exerciseList: ArrayList<Exercise> = ArrayList()
@@ -49,15 +52,21 @@ class ExerciseListActivity : AppCompatActivity() {
         equipment = intent.getStringExtra("equipment").toString()
         apiCall()
 
-        val adapter = ArrayAdapter.createFromResource(
-            this,
-            com.lh1110642.gymgenie.R.array.numbers,
-            R.layout.simple_spinner_item
-        )
+        val equipmentSet = mutableSetOf<String>()
+        for (exercise in listExercise) {
+            exercise?.let {
+                val equipmentStrings = it.equipment.split(",")
+                equipmentSet.addAll(equipmentStrings.map { it.trim() })
+            }
+        }
+        val equipmentList = equipmentSet.toList()
+
+        var adapter = ArrayAdapter(this,R.layout.simple_spinner_item, equipmentList)
+
         adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
 
-        binding.equipmentSpinner.setAdapter(adapter)
-
+        binding.equipmentSpinner.adapter = adapter
+        binding.equipmentSpinner.onItemSelectedListener = this
 
 //
 //        val animalNames: ArrayList<String> = ArrayList()
@@ -267,6 +276,11 @@ class ExerciseListActivity : AppCompatActivity() {
     }
 
     fun recyclerClicked(view: View) {}
+    override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+        val text = parent.getItemAtPosition(position).toString()
+        Toast.makeText(parent.context, text, Toast.LENGTH_SHORT).show()
+    }
+    override fun onNothingSelected(parent: AdapterView<*>?) {}
 
 //    private fun initRecyclerView(){
 //
