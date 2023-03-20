@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -30,6 +31,8 @@ var reps = 0;
             super.onCreate(savedInstanceState)
             binding = ActivityViewExerciseBinding.inflate(layoutInflater)
             setContentView(binding.root)
+
+            binding.description.setMovementMethod(ScrollingMovementMethod())
 
 //            exercise = intent.getSerializableExtra(KEY_EXERCISE_NAME) as Exercise
 //

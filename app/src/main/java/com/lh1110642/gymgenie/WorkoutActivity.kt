@@ -103,59 +103,63 @@ class WorkoutActivity : AppCompatActivity() {
             view.context.startActivity(myIntent)
 
         }
-
-
-        //tracks and updates the listviews
-        val viewModel : exerciseViewModel by viewModels()
-        viewModel.getExercises().observe(this) { exercises ->
-
-//            for (i in exercises.indices) {
-////                //Populated DBListExercise
-//                DBlistExercise[i] = exercises[i]
-//
-//
-//            }
-
-            var name = " "
-            for (i in exercises.indices) {
-                //prints the tokens
-                name = exercises[i]?.getName().toString();
-                var workOutGroup = exercises[i]?.getWorkOutGroup()
-
-                if (workOutGroup == "workOutOne" && listworkOutOne.contains(exercises[i]) == false) {
-                    listworkOutOne.add(exercises[i])
-                } else if (workOutGroup == "workOutTwo" && listworkOutTwo.contains(exercises[i]) == false) {
-                    listworkOutTwo.add(exercises[i])
-                } else if (workOutGroup == "workOutThree" && listworkOutThree.contains(exercises[i]) == false) {
-                    listworkOutThree.add(exercises[i])
-                } else if (workOutGroup == "workOutFour" && listworkOutFour.contains(exercises[i]) == false) {
-                    listworkOutFour.add(exercises[i])
+        val userId = Firebase.auth.currentUser?.uid
+        val db = FirebaseFirestore.getInstance().collection("workout").whereEqualTo("uid", userId)
+        var exercises: ArrayList<Exercise> = ArrayList()
+        var temp = Exercise("","","","","","")
+        exercises.add(temp)
+        db.get()
+            .addOnSuccessListener{ documents ->
+                for(document in documents){
+                    var exercise = document.toObject(Exercise::class.java)
+                    exercises.add(exercise)
                 }
+                var name = " "
+                for (i in exercises.indices) {
+                    //prints the tokens
+                    name = exercises[i]?.getName().toString();
+                    var workOutGroup = exercises[i]?.getWorkOutGroup()
+
+                    if (workOutGroup == "workOutOne" && listworkOutOne.contains(exercises[i]) == false) {
+                        listworkOutOne.add(exercises[i])
+                    } else if (workOutGroup == "workOutTwo" && listworkOutTwo.contains(exercises[i]) == false) {
+                        listworkOutTwo.add(exercises[i])
+                    } else if (workOutGroup == "workOutThree" && listworkOutThree.contains(exercises[i]) == false) {
+                        listworkOutThree.add(exercises[i])
+                    } else if (workOutGroup == "workOutFour" && listworkOutFour.contains(exercises[i]) == false) {
+                        listworkOutFour.add(exercises[i])
+                    }
 
 
+                }
+                for (i in listworkOutOne.indices) {
+                    workoutOne.add(listworkOutOne[i].name)
+                    adapter.notifyDataSetChanged()
+                    //workoutTwo.add("Fries")
+                }
+                for (i in listworkOutTwo.indices) {
+
+                    workoutTwo.add(listworkOutTwo[i].name)
+                    adapter2.notifyDataSetChanged()
+                    //workoutTwo.add("Fries")
+
+                }
+                for (i in listworkOutThree.indices) {
+                    workoutThree.add(listworkOutThree[i].name)
+                    adapter3.notifyDataSetChanged()
+                }
+                for (i in listworkOutFour.indices) {
+                    workoutFour.add(listworkOutFour[i].name)
+                    adapter4.notifyDataSetChanged()
+                }
             }
+            .addOnFailureListener{exception ->
+                Log.w(TAG,"Error getting documents:",exception)
+            }
+
 
             //sorts and populates each listview
-            for (i in listworkOutOne.indices) {
-                workoutOne.add(listworkOutOne[i].name)
-                adapter.notifyDataSetChanged()
-                //workoutTwo.add("Fries")
-            }
-            for (i in listworkOutTwo.indices) {
 
-                workoutTwo.add(listworkOutTwo[i].name)
-                adapter2.notifyDataSetChanged()
-                //workoutTwo.add("Fries")
-
-            }
-            for (i in listworkOutThree.indices) {
-                workoutThree.add(listworkOutThree[i].name)
-                adapter3.notifyDataSetChanged()
-            }
-            for (i in listworkOutFour.indices) {
-                workoutFour.add(listworkOutFour[i].name)
-                adapter4.notifyDataSetChanged()
-            }
 
 
             //clears workout groups
@@ -181,14 +185,14 @@ class WorkoutActivity : AppCompatActivity() {
                         }
 
                 }
-                listworkOutOne.clear()
-                workoutOne.clear()
-                listworkOutTwo.clear()
-                workoutTwo.clear()
-                listworkOutThree.clear()
-                workoutThree.clear()
-                listworkOutFour.clear()
-                workoutFour.clear()
+               // listworkOutOne.clear()
+              //  workoutOne.clear()
+              //  listworkOutTwo.clear()
+              //  workoutTwo.clear()
+               // listworkOutThree.clear()
+               // workoutThree.clear()
+              //  listworkOutFour.clear()
+              //  workoutFour.clear()
                 startActivity(Intent(this, WorkoutActivity::class.java))
             }
             binding.btnClearTwo.setOnClickListener {
@@ -211,14 +215,14 @@ class WorkoutActivity : AppCompatActivity() {
 
                         }
                 }
-                listworkOutOne.clear()
-                workoutOne.clear()
-                listworkOutTwo.clear()
-                workoutTwo.clear()
-                listworkOutThree.clear()
-                workoutThree.clear()
-                listworkOutFour.clear()
-                workoutFour.clear()
+             //   listworkOutOne.clear()
+             //   workoutOne.clear()
+            //    listworkOutTwo.clear()
+            //    workoutTwo.clear()
+            //    listworkOutThree.clear()
+            //    workoutThree.clear()
+            //    listworkOutFour.clear()
+            //    workoutFour.clear()
                 startActivity(Intent(this, WorkoutActivity::class.java))
             }
             binding.btnClearThree.setOnClickListener {
@@ -241,14 +245,14 @@ class WorkoutActivity : AppCompatActivity() {
 
                         }
                 }
-                listworkOutOne.clear()
-                workoutOne.clear()
-                listworkOutTwo.clear()
-                workoutTwo.clear()
-                listworkOutThree.clear()
-                workoutThree.clear()
-                listworkOutFour.clear()
-                workoutFour.clear()
+         //       listworkOutOne.clear()
+//                workoutOne.clear()
+//                listworkOutTwo.clear()
+//                workoutTwo.clear()
+//                listworkOutThree.clear()
+//                workoutThree.clear()
+//                listworkOutFour.clear()
+//                workoutFour.clear()
                 startActivity(Intent(this, WorkoutActivity::class.java))
 
             }
@@ -272,21 +276,21 @@ class WorkoutActivity : AppCompatActivity() {
 
                         }
                 }
-                listworkOutOne.clear()
-                workoutOne.clear()
-                listworkOutTwo.clear()
-                workoutTwo.clear()
-                listworkOutThree.clear()
-                workoutThree.clear()
-                listworkOutFour.clear()
-                workoutFour.clear()
+//                listworkOutOne.clear()
+//                workoutOne.clear()
+//                listworkOutTwo.clear()
+//                workoutTwo.clear()
+//                listworkOutThree.clear()
+//                workoutThree.clear()
+//                listworkOutFour.clear()
+//                workoutFour.clear()
                 startActivity(Intent(this, WorkoutActivity::class.java).putExtra("refresh", "true"))
 
             }
 
         }
 
-    }
+
 
     //
 

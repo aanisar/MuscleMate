@@ -81,6 +81,11 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 //       var adapter = MyRecyclerViewAdapter(this, listExercise.toMutableList())
 //        adapter.setClickListener(this)
 //        recyclerView.setAdapter(adapter)
+//        for (for each exercise in listExercise){
+//            if exercise.equipment != equipment
+//                listExercise[i].remove
+//            i++
+//        }
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = listExercise.toMutableList()?.let { CustomAdapter(it) }
