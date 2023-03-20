@@ -52,21 +52,6 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         equipment = intent.getStringExtra("equipment").toString()
         apiCall()
 
-        val equipmentSet = mutableSetOf<String>()
-        for (exercise in listExercise) {
-            exercise?.let {
-                val equipmentStrings = it.equipment.split(",")
-                equipmentSet.addAll(equipmentStrings.map { it.trim() })
-            }
-        }
-        val equipmentList = equipmentSet.toList()
-
-        var adapter = ArrayAdapter(this,R.layout.simple_spinner_item, equipmentList)
-
-        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
-
-        binding.equipmentSpinner.adapter = adapter
-        binding.equipmentSpinner.onItemSelectedListener = this
 
 //
 //        val animalNames: ArrayList<String> = ArrayList()
@@ -91,6 +76,22 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         recyclerView.adapter = listExercise.toMutableList()?.let { CustomAdapter(it) }
         recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
+        val equipmentSet = mutableSetOf<String>()
+        equipmentSet.add("All")
+        for (exercise in listExercise) {
+            exercise?.let {
+                val equipmentStrings = it.equipment.capitalize().replace("_"," ").split(",")
+                equipmentSet.addAll(equipmentStrings.map { it.trim() })
+            }
+        }
+        val equipmentList = equipmentSet.toList()
+
+        var adapter = ArrayAdapter(this,R.layout.simple_spinner_item, equipmentList)
+
+        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+
+        binding.equipmentSpinner.adapter = adapter
+        binding.equipmentSpinner.onItemSelectedListener = this
 
 
     }
@@ -281,10 +282,21 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
     }
 
     fun recyclerClicked(view: View) {}
-    override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-        val text = parent.getItemAtPosition(position).toString()
-        Toast.makeText(parent.context, text, Toast.LENGTH_SHORT).show()
+    private fun filterExercisesByEquipment(equipmentName: String) {
+        val recyclerView: RecyclerView = findViewById(com.lh1110642.gymgenie.R.id.recycler)
+        val filteredList = exerciseList.filter { exercise ->
+            exercise.equipment.split(",").map { it.trim().lowercase() }.contains(equipmentName)
+        }
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = filteredList.toMutableList()?.let { CustomAdapter(it) }
+        recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
     }
+    override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+        equipment = parent.getItemAtPosition(position).toString().lowercase().replace(" ","_")
+        Toast.makeText(parent.context, equipment, Toast.LENGTH_SHORT).show()
+        filterExercisesByEquipment(equipment)
+
+}
     override fun onNothingSelected(parent: AdapterView<*>?) {}
 
 //    private fun initRecyclerView(){
