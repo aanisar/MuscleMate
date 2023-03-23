@@ -288,7 +288,7 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
             exercise.equipment.split(",").map { it.trim().lowercase() }.contains(equipmentName)
         }
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = filteredList.toMutableList()?.let { CustomAdapter(it) }
+        //recyclerView.adapter = filteredList.toMutableList()?.let { CustomAdapter(it) }
         recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
     }
     override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {

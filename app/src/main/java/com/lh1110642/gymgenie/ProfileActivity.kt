@@ -5,11 +5,27 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import com.firebase.ui.auth.AuthUI
+import com.google.firebase.auth.FirebaseAuth
+import com.lh1110642.gymgenie.databinding.ActivityProfileRealBinding
 
 class ProfileActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityProfileRealBinding
+    private val authDb = FirebaseAuth.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile_real)
+        binding = ActivityProfileRealBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        //setContentView(R.layout.activity_profile_real)
+
+        authDb.currentUser?.let { user->
+            binding.userNameTextView.text = user.displayName
+            binding.emailTextView.text = user.email
+        }
+
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         //different menu options

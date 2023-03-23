@@ -5,39 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
     <TextView
-        android:id="@+id/firstnametextview"
+        android:id="@+id/userNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
         android:layout_marginEnd="250dp"
-        android:text="First Name:"
+        android:text="User Name:"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        tools:layout_editor_absoluteY="347dp" />
 
     <TextView
-        android:id="@+id/lastnametextview"
+        android:id="@+id/emailTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="250dp"
-        android:text="Last Name:"
+        android:text="Email:"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstnametextview" />
+        app:layout_constraintTop_toBottomOf="@+id/userNameTextView" />
 
     <TextView
         android:id="@+id/heighttextview"
@@ -49,7 +38,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lastnametextview" />
+        app:layout_constraintTop_toBottomOf="@+id/emailTextView" />
 
     <TextView
         android:id="@+id/weighttextview"
@@ -67,13 +56,12 @@
         android:id="@+id/firstnameedittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="95dp"
         android:ems="10"
         android:inputType="text"
         android:text="Joe"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/firstnametextview"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        app:layout_constraintStart_toEndOf="@+id/userNameTextView"
+        tools:layout_editor_absoluteY="342dp" />
 
     <EditText
         android:id="@+id/lastnameedittext"
@@ -84,7 +72,7 @@
         android:inputType="text"
         android:text="Bill"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/lastnametextview"
+        app:layout_constraintStart_toEndOf="@+id/emailTextView"
         app:layout_constraintTop_toBottomOf="@+id/firstnameedittext" />
 
     <EditText
