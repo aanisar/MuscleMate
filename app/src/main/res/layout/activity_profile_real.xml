@@ -9,19 +9,16 @@
         android:id="@+id/userNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="250dp"
         android:text="User Name:"
-        android:textSize="20sp"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="347dp" />
+        tools:layout_editor_absoluteY="33dp" />
 
     <TextView
         android:id="@+id/emailTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="250dp"
         android:text="Email:"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,8 +39,8 @@
 
     <TextView
         android:id="@+id/weighttextview"
-        android:layout_width="115dp"
-        android:layout_height="27dp"
+        android:layout_width="124dp"
+        android:layout_height="30dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="240dp"
         android:text="Weight (lbs):"
@@ -53,51 +50,30 @@
         app:layout_constraintTop_toBottomOf="@+id/heighttextview" />
 
     <EditText
-        android:id="@+id/firstnameedittext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Joe"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/userNameTextView"
-        tools:layout_editor_absoluteY="342dp" />
-
-    <EditText
-        android:id="@+id/lastnameedittext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Bill"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/emailTextView"
-        app:layout_constraintTop_toBottomOf="@+id/firstnameedittext" />
-
-    <EditText
         android:id="@+id/heightedittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="532dp"
         android:ems="10"
         android:hint="180"
         android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/heighttextview"
-        app:layout_constraintTop_toBottomOf="@+id/lastnameedittext" />
+        app:layout_constraintHorizontal_bias="0.74"
+        app:layout_constraintStart_toEndOf="@+id/heighttextview" />
 
     <EditText
         android:id="@+id/weightedittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="10dp"
         android:ems="10"
         android:hint="150"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.729"
         app:layout_constraintStart_toEndOf="@+id/weighttextview"
         app:layout_constraintTop_toBottomOf="@+id/heightedittext" />
 
@@ -105,11 +81,12 @@
         android:id="@+id/savebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="308dp"
         android:text="Save"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
