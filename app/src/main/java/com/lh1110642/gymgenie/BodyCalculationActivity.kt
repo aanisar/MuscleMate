@@ -10,10 +10,6 @@ import android.widget.Toast
 import org.checkerframework.checker.units.qual.m
 
 class BodyCalculationActivity : AppCompatActivity() {
-    /*rivate EditText weight;
-    private EditText height;
-    private Button bmi;
-    private TextView bmiVal;*/
 
     private lateinit var binding: ActivityBodyCalculationBinding
     //var height = 200.0

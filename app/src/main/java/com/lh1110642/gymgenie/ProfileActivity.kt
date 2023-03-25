@@ -29,6 +29,10 @@ class ProfileActivity : AppCompatActivity() {
             startActivity(Intent(this, BodyCalculationActivity::class.java))
         }
 
+        binding.viewWorkoutButton.setOnClickListener {
+        startActivity(Intent(this,WorkoutActivity::class.java))
+        }
+
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         //different menu options
