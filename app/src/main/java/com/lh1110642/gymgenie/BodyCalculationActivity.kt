@@ -37,8 +37,6 @@ class BodyCalculationActivity : AppCompatActivity() {
                 val bmiFinal = String.format("%.2f", bmi).toFloat()
                 displayResult(bmiFinal)
              }
-
-
         }
 
         /*height = cmToM(height)
