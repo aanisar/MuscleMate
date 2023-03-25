@@ -25,6 +25,13 @@ class ProfileActivity : AppCompatActivity() {
             binding.userNameTextView.text = user.displayName
             binding.emailTextView.text = user.email
         }
+        binding.calculateButton.setOnClickListener{
+            startActivity(Intent(this, BodyCalculationActivity::class.java))
+        }
+
+        binding.viewWorkoutButton.setOnClickListener {
+        startActivity(Intent(this,WorkoutActivity::class.java))
+        }
 
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

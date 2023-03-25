@@ -72,6 +72,23 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 //            i++
 //        }
 
+//        val filteredList = listExercise.filter { exercise ->
+//            exercise != null && exercise.equipment.split(",").map { it.trim().lowercase() }.contains(equipment)
+//        }
+//
+//        listExercise.clear()
+//        listExercise.addAll(filteredList)
+//
+//
+//        for (exercise in listExercise){
+//            if (exercise != null) {
+//                if(!exercise.equipment.contains(equipment))
+//
+//            }
+//        }
+
+
+
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = CustomAdapter(listExercise)
         recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
