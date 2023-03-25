@@ -29,16 +29,15 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
     private lateinit var adapterExercise: Adapter
     //init variable section
     var exerciseList: ArrayList<Exercise> = ArrayList()
-    var filteredExerciseList: ArrayList<Exercise> = ArrayList()
     var muscle = ""
     var diff = ""
     var type = ""
     var equipment =""
     var name =""
     var auth = Firebase.auth
-    var listExercise = arrayOfNulls<Exercise>(10)
+    var listExercise = mutableListOf<Exercise>()
     var ThreadKiller = false
-
+    lateinit var recyclerView: RecyclerView
     //var MyRecyclerViewAdapter adapter
     private lateinit var binding: ActivityExerciseListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,8 +49,9 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         diff = intent.getStringExtra("difficulty").toString()
         type = intent.getStringExtra("type").toString()
         equipment = intent.getStringExtra("equipment").toString()
-        apiCall()
 
+        apiCall()
+        exerciseList.addAll(listExercise)
 
 //
 //        val animalNames: ArrayList<String> = ArrayList()
@@ -61,7 +61,7 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 //        animalNames.add("Sheep")
 //        animalNames.add("Goat")
 //
-        val recyclerView: RecyclerView = findViewById(com.lh1110642.gymgenie.R.id.recycler)
+        recyclerView = findViewById(com.lh1110642.gymgenie.R.id.recycler)
 //        recyclerView.setLayoutManager(LinearLayoutManager(this))
 //       var adapter = MyRecyclerViewAdapter(this, listExercise.toMutableList())
 //        adapter.setClickListener(this)
@@ -73,8 +73,9 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 //        }
 
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = listExercise.toMutableList()?.let { CustomAdapter(it) }
+        recyclerView.adapter = CustomAdapter(listExercise)
         recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+
 
         val equipmentSet = mutableSetOf<String>()
         equipmentSet.add("All")
@@ -108,6 +109,7 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         //different menu options
         return when (item.itemId) {
             com.lh1110642.gymgenie.R.id.anatomy -> {
+
                 startActivity(Intent(this,BrowsingActivity::class.java))
                 return true
             }
@@ -214,7 +216,7 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
                 stringarray[0] = stringarray[0].substring(1, stringarray[0].length)
                 stringarray[stringarray.size - 1] = stringarray[stringarray.size - 1].substring(0, stringarray[stringarray.size - 1].length - 2)
 
-
+                var counter = 0;
                 // val listExercise = arrayOfNulls<Exercise>(10)
                 for (i in stringarray.indices) {
                     Log.i("DB_Mason:", i.toString())
@@ -229,20 +231,23 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
                     str.replace("\"", "")
                     val strArr = str.split("@!@") //split each category into 1 list
 
+                    if (strArr.size == 7){
                     //Creates a exercise, then inserts it into a list
                     val exercise = Exercise(strArr[1].substring(3, strArr[1].length - 4), strArr[2].substring(3, strArr[2].length - 4), strArr[3].substring(3, strArr[3].length - 4), strArr[4].substring(3, strArr[4].length - 4), strArr[5].substring(3, strArr[5].length - 4), strArr[6].substring(3, strArr[6].length - 4))
-                    listExercise[i] = exercise
+                    listExercise.add(exercise)
+
+                    }
                 }
 
                 //Just displays the list for viewing purpose, NOT NEEDED
-                println(listExercise[3]!!.excerciseToString())
-                for (i in stringarray.indices) {
-                    //prints the tokens
-                    println(listExercise[i]!!.getName())
-                    Log.i("Name: ", listExercise[i]!!.getName())
-                    println("_________________________")
-                }
-                Log.i("Name: ", listExercise[3]!!.excerciseToString())
+//                println(listExercise[3]!!.excerciseToString())
+//                for (i in stringarray.indices) {
+//                    //prints the tokens
+//                    println(listExercise[i]!!.getName())
+//                    Log.i("Name: ", listExercise[i]!!.getName())
+//                    println("_________________________")
+//                }
+//                Log.i("Name: ", listExercise[3]!!.excerciseToString())
 
             }catch (err:Error) {//if call fails
                 Log.i("error","ERRRRRRRRRRRR")
@@ -283,18 +288,35 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
     fun recyclerClicked(view: View) {}
     private fun filterExercisesByEquipment(equipmentName: String) {
-        val recyclerView: RecyclerView = findViewById(com.lh1110642.gymgenie.R.id.recycler)
-        val filteredList = exerciseList.filter { exercise ->
-            exercise.equipment.split(",").map { it.trim().lowercase() }.contains(equipmentName)
+        listExercise.clear()
+        listExercise.addAll(exerciseList)
+        var holder: ArrayList<Exercise> = ArrayList()
+        while (listExercise.size != 0){
+            holder.add(listExercise.first())
+            listExercise.removeFirst()
+            recyclerView.adapter?.notifyDataSetChanged()
         }
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        //recyclerView.adapter = filteredList.toMutableList()?.let { CustomAdapter(it) }
-        recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        if(equipmentName != "all")
+            holder = holder.filter { it.equipment == equipment } as ArrayList<Exercise>
+        while ( holder.size != 0){
+            listExercise.add(holder.first())
+            holder.removeFirst()
+            recyclerView.adapter?.notifyDataSetChanged()
+        }
+
+
     }
     override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
         equipment = parent.getItemAtPosition(position).toString().lowercase().replace(" ","_")
         Toast.makeText(parent.context, equipment, Toast.LENGTH_SHORT).show()
-        filterExercisesByEquipment(equipment)
+
+            filterExercisesByEquipment(equipment)
+            //listExercise = listExercise.filter { it.equipment == equipment } as MutableList<Exercise>
+            //listExercise.removeLast()
+       // var holder: Array<Exercise> = listExercise.toTypedArray()
+//        listExercise.clear()
+//        listExercise.addAll(holder)
+//        recyclerView.adapter?.notifyDataSetChanged()
 
 }
     override fun onNothingSelected(parent: AdapterView<*>?) {}

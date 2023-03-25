@@ -191,7 +191,7 @@ var reps = 0;
         }
 
         fun database(excerciseForWorkout: Exercise){
-            val db = FirebaseFirestore.getInstance().collection("workout")
+            val db = FirebaseFirestore.getInstance().collection("profile")
 
             val id = exercise.name+workoutGroup+Firebase.auth.currentUser?.uid
 

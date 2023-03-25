@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 //the basis of this adapter was found https://stackoverflow.com/questions/40584424/simple-android-recyclerview-example
-class CustomAdapter(private val data: MutableList<Exercise?>) :
+class CustomAdapter(private val data: MutableList<Exercise>) :
     RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         //connects the row item to the adapter
