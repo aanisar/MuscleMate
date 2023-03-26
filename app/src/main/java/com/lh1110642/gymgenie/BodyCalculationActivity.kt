@@ -77,7 +77,7 @@ class BodyCalculationActivity : AppCompatActivity() {
     private fun displayResult(bmi: Float) {
         val resultIndex = findViewById<TextView>(R.id.bmiValTextView)
         val resultDescription = findViewById<TextView>(R.id.bmiResultTextView)
-        val info = findViewById<TextView>(R.id.moreInfoTextView)
+        val info = findViewById<TextView>(R.id.moreInfoTextView)1
 
         resultIndex.text = bmi.toString()
         info.text= "Normal range is 18.5-24.9"
