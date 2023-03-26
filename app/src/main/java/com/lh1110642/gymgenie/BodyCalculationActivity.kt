@@ -2,6 +2,7 @@ package com.lh1110642.gymgenie
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.EditText
 import com.lh1110642.gymgenie.databinding.ActivityBodyCalculationBinding
 import android.widget.Button;
@@ -20,6 +21,14 @@ class BodyCalculationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBodyCalculationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.bodyFatTextView.visibility = View.INVISIBLE
+        binding.healthTextView.visibility = View.INVISIBLE
+        binding.normRangeTextView.visibility = View.INVISIBLE
+
+
+        binding.bodyFatResultTextView.visibility = View.INVISIBLE
+        binding.healthResultTextView.visibility = View.INVISIBLE
+        binding.normRangeResultTextView.visibility = View.INVISIBLE
 
         val weightText = findViewById<EditText>(R.id.wtText)
         val heightText = findViewById<EditText>(R.id.htText)
@@ -75,12 +84,8 @@ class BodyCalculationActivity : AppCompatActivity() {
     }
 
     private fun displayResult(bmi: Float) {
-        val resultIndex = findViewById<TextView>(R.id.bmiValTextView)
-        val resultDescription = findViewById<TextView>(R.id.bmiResultTextView)
-        val info = findViewById<TextView>(R.id.moreInfoTextView)
-
-        resultIndex.text = bmi.toString()
-        info.text= "Normal range is 18.5-24.9"
+        binding.bodyFatResultTextView.text = bmi.toString()
+        binding.normRangeResultTextView.text= "18.5-24.9"
 
         var resultText = ""
 
@@ -98,7 +103,16 @@ class BodyCalculationActivity : AppCompatActivity() {
                 resultText = "Obese"
             }
         }
-        resultDescription.text = resultText
+        binding.healthResultTextView.text = resultText
+
+        binding.bodyFatTextView.visibility = View.VISIBLE
+        binding.healthTextView.visibility = View.VISIBLE
+        binding.normRangeTextView.visibility = View.VISIBLE
+
+
+        binding.bodyFatResultTextView.visibility = View.VISIBLE
+        binding.healthResultTextView.visibility = View.VISIBLE
+        binding.normRangeResultTextView.visibility = View.VISIBLE
     }
 
 }
