@@ -84,13 +84,20 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
 
         val equipmentSet = mutableSetOf<String>()
+        //all starts at position 0 in the spinner
         equipmentSet.add("All")
+
+        //exercises take up positions 1-6
         for (exercise in listExercise) {
             exercise?.let {
                 val equipmentStrings = it.equipment.capitalize().replace("_"," ").split(",")
                 equipmentSet.addAll(equipmentStrings.map { it.trim() })
             }
         }
+        //adding a-z at position 7 of spinner
+        equipmentSet.add("Name (A to Z)")
+        //adding z-a at position 8 of spinner
+        equipmentSet.add("Name (Z to A)")
         val equipmentList = equipmentSet.toList()
 
         var adapter = ArrayAdapter(this,R.layout.simple_spinner_item, equipmentList)
@@ -260,11 +267,53 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
 
     }
+    private fun filterExercisesByNameZA(name: String) {
+
+    }
+
+    private fun filterExercisesByNameAZ(name: String) {
+
+    }
     @SuppressLint("SuspiciousIndentation")
     override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
         equipment = parent.getItemAtPosition(position).toString().lowercase().replace(" ","_")
             filterExercisesByEquipment(equipment)
-            //listExercise = listExercise.filter { it.equipment == equipment } as MutableList<Exercise>
+
+        var atoz = false
+        var ztoa = false
+
+        //run through all positions in the spinner
+        for(i in 1..position){
+
+            //if the value selected in the spinner says Name (A to Z) then we set the atoz flag true and the other one false
+            if(equipment == "Name (A to Z)"){
+                atoz = true
+                ztoa = false
+            }
+
+            //if the value selected in the spinner says Name (Z to A) then we set the ztoa flag true and the pther one false
+            if(equipment == "Name (Z to A)"){
+                atoz = false
+                ztoa = true
+            }
+
+            //if something else is clicked other than the 2 things maintain false flags
+            else{
+                atoz = false
+                ztoa = false
+            }
+        }
+
+        //if atoz is true then run the filter method
+        if(atoz)
+            filterExercisesByNameAZ(name)
+
+        //if the ztoa is true run the filter method
+        if(ztoa)
+            filterExercisesByNameZA(name)
+
+
+        //listExercise = listExercise.filter { it.equipment == equipment } as MutableList<Exercise>
             //listExercise.removeLast()
        // var holder: Array<Exercise> = listExercise.toTypedArray()
 //        listExercise.clear()
@@ -272,6 +321,7 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 //        recyclerView.adapter?.notifyDataSetChanged()
 
 }
+
     override fun onNothingSelected(parent: AdapterView<*>?) {}
 
 //    private fun initRecyclerView(){
