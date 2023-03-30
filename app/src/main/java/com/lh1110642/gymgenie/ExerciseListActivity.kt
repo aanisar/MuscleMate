@@ -45,6 +45,24 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         binding = ActivityExerciseListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.bottomNavigator.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                com.lh1110642.gymgenie.R.id.anatomy -> {
+                    startActivity(Intent(this, BrowsingActivity::class.java))
+                    return@setOnNavigationItemSelectedListener true
+                }
+                com.lh1110642.gymgenie.R.id.workout -> {
+                    startActivity(Intent(this, WorkoutActivity::class.java))
+                    return@setOnNavigationItemSelectedListener true
+                }
+                com.lh1110642.gymgenie.R.id.profile -> {
+                    startActivity(Intent(this, ProfileActivity::class.java))
+                    return@setOnNavigationItemSelectedListener true
+                }
+                else -> return@setOnNavigationItemSelectedListener super.onOptionsItemSelected(menuItem)
+            }
+        }
+
         muscle = intent.getStringExtra("muscle").toString()
         diff = intent.getStringExtra("difficulty").toString()
         type = intent.getStringExtra("type").toString()
@@ -118,35 +136,27 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         var intent = Intent(this, ViewExerciseActivity::class.java)
         startActivity(intent)
     }
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(com.lh1110642.gymgenie.R.menu.main_menu, menu)
-        return true
-    }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        //different menu options
-        return when (item.itemId) {
-            com.lh1110642.gymgenie.R.id.anatomy -> {
-
-                startActivity(Intent(this,BrowsingActivity::class.java))
-                return true
-            }
-            com.lh1110642.gymgenie.R.id.workout -> {
-                startActivity(Intent(this,WorkoutActivity::class.java))
-                return true
-            }
-            com.lh1110642.gymgenie.R.id.signOut -> {
-                AuthUI.getInstance()
-                    .signOut(this)
-                    .addOnCompleteListener {
-                        startActivity(Intent(this,LoginActivity::class.java))
-                    }
-                return true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-
-        return super.onOptionsItemSelected(item)
-    }
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(com.lh1110642.gymgenie.R.menu.main_menu, menu)
+//        return true
+//    }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        //different menu options
+//        return when (item.itemId) {
+//            com.lh1110642.gymgenie.R.id.anatomy -> {
+//
+//                startActivity(Intent(this,BrowsingActivity::class.java))
+//                return true
+//            }
+//            com.lh1110642.gymgenie.R.id.workout -> {
+//                startActivity(Intent(this,WorkoutActivity::class.java))
+//                return true
+//            }
+//            else -> super.onOptionsItemSelected(item)
+//        }
+//
+//        return super.onOptionsItemSelected(item)
+//    }
 
     fun apiCall(){
 
@@ -325,8 +335,6 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
     }
     override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
         equipment = parent.getItemAtPosition(position).toString().lowercase().replace(" ","_")
-        Toast.makeText(parent.context, equipment, Toast.LENGTH_SHORT).show()
-
             filterExercisesByEquipment(equipment)
             //listExercise = listExercise.filter { it.equipment == equipment } as MutableList<Exercise>
             //listExercise.removeLast()

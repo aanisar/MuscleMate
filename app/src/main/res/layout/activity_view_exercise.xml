@@ -277,4 +277,14 @@
         app:layout_constraintVertical_bias="0.061"
         app:srcCompat="@drawable/googleg_standard_color_18" />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:itemBackground="@color/purple_500"        app:layout_constraintBottom_toBottomOf="parent"
+        app:itemTextColor="@drawable/selector"
+        app:itemIconTint="@drawable/selector"
+        app:menu="@menu/main_menu"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,7 +8,7 @@ public class BodyStats {
 
     String id;
 
-    public BodyStats(String height, String weight, String bmi, String id) {
+    public BodyStats(String height, String weight, String bmi) {
         this.height = height;
         this.weight = weight;
         this.bmi = bmi;

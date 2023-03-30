@@ -127,39 +127,50 @@ class BrowsingBackActivity : AppCompatActivity() {
         binding.swap.setOnClickListener{
             startActivity(Intent(this, BrowsingActivity::class.java))
         }
-    }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return true
-    }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        //different menu options
-        return when (item.itemId) {
-            R.id.anatomy -> {
-                startActivity(Intent(this,BrowsingActivity::class.java))
-                return true
+        binding.bottomNavigator.selectedItemId = R.id.anatomy
+        binding.bottomNavigator.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.anatomy -> {
+                    startActivity(Intent(this, BrowsingActivity::class.java))
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.workout -> {
+                    startActivity(Intent(this, WorkoutActivity::class.java))
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.profile -> {
+                    startActivity(Intent(this, ProfileActivity::class.java))
+                    return@setOnNavigationItemSelectedListener true
+                }
+                else -> return@setOnNavigationItemSelectedListener super.onOptionsItemSelected(menuItem)
             }
-            R.id.workout -> {
-                startActivity(Intent(this,WorkoutActivity::class.java))
-                return true
-            }
-            R.id.profile -> {
-                startActivity(Intent(this,ProfileActivity::class.java))
-                return true
-            }
-            R.id.signOut -> {
-                AuthUI.getInstance()
-                    .signOut(this)
-                    .addOnCompleteListener {
-                        startActivity(Intent(this,LoginActivity::class.java))
-                    }
-                return true
-            }
-            else -> super.onOptionsItemSelected(item)
         }
-
-        return super.onOptionsItemSelected(item)
     }
+
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.main_menu, menu)
+//        return true
+//    }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        //different menu options
+//        return when (item.itemId) {
+//            R.id.anatomy -> {
+//                startActivity(Intent(this,BrowsingActivity::class.java))
+//                return true
+//            }
+//            R.id.workout -> {
+//                startActivity(Intent(this,WorkoutActivity::class.java))
+//                return true
+//            }
+//            R.id.profile -> {
+//                startActivity(Intent(this,ProfileActivity::class.java))
+//                return true
+//            }
+//            else -> super.onOptionsItemSelected(item)
+//        }
+//
+//        return super.onOptionsItemSelected(item)
+//    }
 
 }

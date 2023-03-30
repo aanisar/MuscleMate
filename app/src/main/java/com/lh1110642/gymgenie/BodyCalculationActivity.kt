@@ -1,5 +1,6 @@
 package com.lh1110642.gymgenie
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -24,6 +25,26 @@ class BodyCalculationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBodyCalculationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.bottomNavigator.selectedItemId = R.id.profile
+        binding.bottomNavigator.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.anatomy -> {
+                    startActivity(Intent(this, BrowsingActivity::class.java))
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.workout -> {
+                    startActivity(Intent(this, WorkoutActivity::class.java))
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.profile -> {
+                    startActivity(Intent(this, ProfileActivity::class.java))
+                    return@setOnNavigationItemSelectedListener true
+                }
+                else -> return@setOnNavigationItemSelectedListener super.onOptionsItemSelected(menuItem)
+            }
+        }
+
+
         binding.bodyFatTextView.visibility = View.INVISIBLE
         binding.healthTextView.visibility = View.INVISIBLE
         binding.normRangeTextView.visibility = View.INVISIBLE
@@ -48,7 +69,7 @@ class BodyCalculationActivity : AppCompatActivity() {
         }
 
         binding.saveBtn.setOnClickListener {
-            database(bodyStats)
+            database(bodyStats) // something wrong with the database?
         }
 
         /*height = cmToM(height)
@@ -73,6 +94,11 @@ class BodyCalculationActivity : AppCompatActivity() {
 
         //test
 
+        val currentWeight = 70.0 // kilograms
+        val desiredBodyFatPercentage = 20.0 // percent
+        val desiredWeight = calculateDesiredWeight(currentWeight, desiredBodyFatPercentage)
+        println("Desired weight: $desiredWeight kilograms")
+
 
 }
 
@@ -90,6 +116,10 @@ class BodyCalculationActivity : AppCompatActivity() {
                 return true
             }
         }
+    }
+
+    private fun calculateDesiredWeight(currentWeight: Double, desiredBodyFatPercentage: Double): Double {
+        return (desiredBodyFatPercentage / 100) * currentWeight / (1 - (desiredBodyFatPercentage / 100))
     }
 
     private fun displayResult(bmi: Float) {

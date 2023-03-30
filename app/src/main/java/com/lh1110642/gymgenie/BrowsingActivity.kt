@@ -15,6 +15,7 @@ import com.lh1110642.gymgenie.databinding.ActivityBrowsingBinding
 import com.lh1110642.gymgenie.databinding.ActivityExerciseListBinding
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import org.checkerframework.checker.nullness.qual.NonNull
 import java.util.*
 
 
@@ -175,40 +176,53 @@ class BrowsingActivity : AppCompatActivity() {
             startActivity(Intent(this, BrowsingBackActivity::class.java))
 // startActivity(Intent(this, WorkoutActivity::class.java))
         }
-    }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return true
-    }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        //different menu options
-        return when (item.itemId) {
-            R.id.anatomy -> {
-                startActivity(Intent(this,BrowsingActivity::class.java))
-                return true
+        binding.bottomNavigator.selectedItemId = R.id.anatomy
+
+        binding.bottomNavigator.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.anatomy -> {
+                    startActivity(Intent(this, BrowsingActivity::class.java))
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.workout -> {
+                    startActivity(Intent(this, WorkoutActivity::class.java))
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.profile -> {
+                    startActivity(Intent(this, ProfileActivity::class.java))
+                    return@setOnNavigationItemSelectedListener true
+                }
+                else -> return@setOnNavigationItemSelectedListener super.onOptionsItemSelected(menuItem)
             }
-            R.id.workout -> {
-                startActivity(Intent(this,WorkoutActivity::class.java))
-                return true
-            }
-            R.id.profile -> {
-                startActivity(Intent(this,ProfileActivity::class.java))
-                return true
-            }
-            R.id.signOut -> {
-                AuthUI.getInstance()
-                    .signOut(this)
-                    .addOnCompleteListener {
-                        startActivity(Intent(this,LoginActivity::class.java))
-                    }
-                return true
-            }
-            else -> super.onOptionsItemSelected(item)
         }
-
-        return super.onOptionsItemSelected(item)
     }
+
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.main_menu, menu)
+//        return true
+//    }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        //different menu options
+//        return when (item.itemId) {
+//            R.id.anatomy -> {
+//                startActivity(Intent(this,BrowsingActivity::class.java))
+//                return true
+//            }
+//            R.id.workout -> {
+//                startActivity(Intent(this,WorkoutActivity::class.java))
+//                return true
+//            }
+//            R.id.profile -> {
+//                startActivity(Intent(this,ProfileActivity::class.java))
+//                return true
+//            }
+//
+//            else -> super.onOptionsItemSelected(item)
+//        }
+//
+//        return super.onOptionsItemSelected(item)
+//    }
 
 
 

@@ -6,11 +6,12 @@
 
     <item android:id="@+id/anatomy"
         android:icon="@drawable/home"
-        android:title="home"
+        android:title="Home"
         app:showAsAction="always"
         android:layout_centerInParent="true"
         android:text="Home"
         android:textSize="50dp"
+        android:color = "@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"/>
@@ -18,13 +19,25 @@
     <item
         android:id="@+id/workout"
         android:icon="@drawable/barbell"
-        android:title="barbell"
+        android:title="My Workout"
+        android:layout_centerInParent="true"
+        android:text="My Workout"
+        android:textSize="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:color = "@android:color/white"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/profile"
         android:icon="@drawable/newprofile"
-        android:title="profile"
+        android:layout_centerInParent="true"
+        android:title="Profile"
+        android:text="Profile"
+        android:textSize="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:color = "@android:color/white"
         app:showAsAction="always" />
 
 
