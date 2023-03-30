@@ -20,6 +20,9 @@ class BodyCalculationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBodyCalculationBinding
     private lateinit var bodyStats: BodyStats
     var auth = Firebase.auth
+    var weight = ""
+    var height = ""
+    var bmi = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,16 +62,17 @@ class BodyCalculationActivity : AppCompatActivity() {
         val calcButton = findViewById<Button>(R.id.calcBtn)
 
         calcButton.setOnClickListener {
-            val weight = weightText.text.toString()
-            val height = heightText.text.toString()
+            weight = weightText.text.toString()
+            height = heightText.text.toString()
             if(validateInput(weight,height)) {
-                val bmi = (0.45*weight.toFloat())/((height.toFloat()/100)*(height.toFloat()/100))
+                bmi = (0.45*weight.toFloat())/((height.toFloat()/100)*(height.toFloat()/100))
                 val bmiFinal = String.format("%.2f", bmi).toFloat()
                 displayResult(bmiFinal)
              }
         }
 
         binding.saveBtn.setOnClickListener {
+            bodyStats =  BodyStats(height,weight,bmi.toString())
             database(bodyStats) // something wrong with the database?
         }
 
@@ -158,7 +162,7 @@ class BodyCalculationActivity : AppCompatActivity() {
     fun database(stats: BodyStats){
         val db = FirebaseFirestore.getInstance().collection("bodystats")
 
-        val id = bodyStats.height+Firebase.auth.currentUser?.uid
+        val id = Firebase.auth.currentUser?.uid+bodyStats.height
 
         Log.w("DB_Parth", auth.currentUser!!.uid)
         if (stats != null) { //Gets the users ID
