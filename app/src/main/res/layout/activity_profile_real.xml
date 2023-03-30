@@ -9,13 +9,12 @@
         android:id="@+id/viewWorkoutButton"
         android:layout_width="311dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="420dp"
         android:text="View your Workouts"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calculateButton"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.403" />
 
     <TextView
         android:id="@+id/userNameTextView"
@@ -35,32 +34,32 @@
         android:layout_marginTop="32dp"
         android:text="Email:"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userNameTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/userNameTextView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/calculateButton"
         android:layout_width="311dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="420dp"
         android:text="Calculate your BMI"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailTextView" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.308" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemBackground="@color/purple_500"        app:layout_constraintBottom_toBottomOf="parent"
-        app:itemTextColor="@drawable/selector"
+        app:itemBackground="@color/purple_500"
         app:itemIconTint="@drawable/selector"
-        app:menu="@menu/main_menu"
-        />
-
+        app:itemTextColor="@drawable/selector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/main_menu" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

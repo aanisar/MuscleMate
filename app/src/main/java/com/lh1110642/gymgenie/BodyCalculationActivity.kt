@@ -160,9 +160,9 @@ class BodyCalculationActivity : AppCompatActivity() {
 
 
     fun database(stats: BodyStats){
-        val db = FirebaseFirestore.getInstance().collection("bodystats")
+        val db = FirebaseFirestore.getInstance().collection("bmi")
 
-        val id = Firebase.auth.currentUser?.uid+bodyStats.height
+        val id = Firebase.auth.currentUser?.uid
 
         Log.w("DB_Parth", auth.currentUser!!.uid)
         if (stats != null) { //Gets the users ID
@@ -173,9 +173,11 @@ class BodyCalculationActivity : AppCompatActivity() {
             bodyStats.setHeight(bodyStats.height)
             bodyStats.setWeight(bodyStats.weight)
             bodyStats.setBmi(bodyStats.bmi)
-            db.document(id).set(stats)
-                .addOnSuccessListener {  Log.w("DB_Parth", "ADDED") }
-                .addOnFailureListener{ Log.w("DB_Fail", it.localizedMessage)}
+            if (id != null) {
+                db.document(id).set(stats)
+                    .addOnSuccessListener {  Log.w("DB_Parth", "ADDED") }
+                    .addOnFailureListener{ Log.w("DB_Fail", it.localizedMessage)}
+            }
         }
 
 

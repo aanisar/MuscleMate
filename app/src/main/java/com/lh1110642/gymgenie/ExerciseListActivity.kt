@@ -1,6 +1,7 @@
 package com.lh1110642.gymgenie
 
 import android.R
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -72,38 +73,8 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         exerciseList.addAll(listExercise)
 
 //
-//        val animalNames: ArrayList<String> = ArrayList()
-//        animalNames.add("Horse")
-//        animalNames.add("Cow")
-//        animalNames.add("Camel")
-//        animalNames.add("Sheep")
-//        animalNames.add("Goat")
-//
         recyclerView = findViewById(com.lh1110642.gymgenie.R.id.recycler)
-//        recyclerView.setLayoutManager(LinearLayoutManager(this))
-//       var adapter = MyRecyclerViewAdapter(this, listExercise.toMutableList())
-//        adapter.setClickListener(this)
-//        recyclerView.setAdapter(adapter)
-//        for (for each exercise in listExercise){
-//            if exercise.equipment != equipment
-//                listExercise[i].remove
-//            i++
-//        }
 
-//        val filteredList = listExercise.filter { exercise ->
-//            exercise != null && exercise.equipment.split(",").map { it.trim().lowercase() }.contains(equipment)
-//        }
-//
-//        listExercise.clear()
-//        listExercise.addAll(filteredList)
-//
-//
-//        for (exercise in listExercise){
-//            if (exercise != null) {
-//                if(!exercise.equipment.contains(equipment))
-//
-//            }
-//        }
 
 
 
@@ -136,27 +107,7 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         var intent = Intent(this, ViewExerciseActivity::class.java)
         startActivity(intent)
     }
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(com.lh1110642.gymgenie.R.menu.main_menu, menu)
-//        return true
-//    }
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        //different menu options
-//        return when (item.itemId) {
-//            com.lh1110642.gymgenie.R.id.anatomy -> {
-//
-//                startActivity(Intent(this,BrowsingActivity::class.java))
-//                return true
-//            }
-//            com.lh1110642.gymgenie.R.id.workout -> {
-//                startActivity(Intent(this,WorkoutActivity::class.java))
-//                return true
-//            }
-//            else -> super.onOptionsItemSelected(item)
-//        }
-//
-//        return super.onOptionsItemSelected(item)
-//    }
+
 
     fun apiCall(){
 
@@ -218,7 +169,8 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
                 .url(url)
                 .get()
                 .addHeader("X-RapidAPI-Key", "088a03c490mshbabdd39f3567b25p1b021ajsnd500a6f71c98")
-                .addHeader("X-RapidAPI-Host", "exercises-by-api-ninjas.p.rapidapi.com")
+               // .addHeader("X-RapidAPI-Key", "2J0K5sCKdQmqfU9GdHRtrPqGxMKde7OerW2roLJY")
+                   .addHeader("X-RapidAPI-Host", "exercises-by-api-ninjas.p.rapidapi.com")
                 .build()
 
             try {
@@ -287,31 +239,6 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         }
 
     }
-    fun database(excerciseForWorkout: Exercise){
-        val db = FirebaseFirestore.getInstance().collection("workout")
-
-        val id = db.document().getId()
-
-
-        //debugging not needed
-//        Log.i("DB_Mason: ","About to upload to DB")
-//        if (excerciseForWorkout != null) {
-//            Log.i("DB_Mason: ",excerciseForWorkout.getName())
-//        }
-        Log.w("DB_Mason", auth.currentUser!!.uid)
-        if (excerciseForWorkout != null) { //Gets the users ID
-            excerciseForWorkout.setuid(auth.currentUser!!.uid)
-            excerciseForWorkout.setWorkOutGroup("") //You can use this for putting it into a workout group
-        }
-        //Writes to the database
-        if (excerciseForWorkout != null) {
-            db.document(id).set(excerciseForWorkout)
-                .addOnSuccessListener {  Log.w("DB_Mason", "ADDED") }
-                .addOnFailureListener{ Log.w("DB_Fail", it.localizedMessage)}
-        }
-
-
-    }
 
     fun recyclerClicked(view: View) {}
     private fun filterExercisesByEquipment(equipmentName: String) {
@@ -333,6 +260,7 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
 
     }
+    @SuppressLint("SuspiciousIndentation")
     override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
         equipment = parent.getItemAtPosition(position).toString().lowercase().replace(" ","_")
             filterExercisesByEquipment(equipment)
