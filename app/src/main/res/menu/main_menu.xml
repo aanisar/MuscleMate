@@ -5,9 +5,15 @@
 
 
     <item android:id="@+id/anatomy"
-        android:icon="@drawable/front"
-        android:title="anatomy"
-        app:showAsAction="always"/>
+        android:icon="@drawable/home"
+        android:title="home"
+        app:showAsAction="always"
+        android:layout_centerInParent="true"
+        android:text="Home"
+        android:textSize="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
 
     <item
         android:id="@+id/workout"
@@ -17,12 +23,9 @@
 
     <item
         android:id="@+id/profile"
-        android:icon="@drawable/profile"
+        android:icon="@drawable/newprofile"
         android:title="profile"
         app:showAsAction="always" />
 
-    <item android:id="@+id/signOut"
-        android:icon="@drawable/ic_signout"
-        android:title="ic_signout"
-        app:showAsAction="always"/>
+
 </menu>
