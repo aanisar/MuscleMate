@@ -72,6 +72,7 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         diff = intent.getStringExtra("difficulty").toString()
         type = intent.getStringExtra("type").toString()
         equipment = intent.getStringExtra("equipment").toString()
+        name = intent.getStringExtra("name").toString()
         listExercise.clear()
 
             apiCall()
@@ -265,12 +266,41 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
 
     }
+
     private fun filterExercisesByNameAZ() {
-
+        listExercise.clear()
+        listExercise.addAll(exerciseList)
+        var holder: ArrayList<Exercise> = ArrayList()
+        while (listExercise.size != 0){
+            holder.add(listExercise.first())
+            listExercise.removeFirst()
+            recyclerView.adapter?.notifyDataSetChanged()
+        }
+        while ( holder.size != 0){
+            holder = holder.sortedBy {it.name.first() } as ArrayList<Exercise>
+            listExercise.add(holder.first())
+            holder.removeFirst()
+            recyclerView.adapter?.notifyDataSetChanged()
+        }
     }
+
     private fun filterExercisesByNameZA() {
-
+        listExercise.clear()
+        listExercise.addAll(exerciseList)
+        var holder: ArrayList<Exercise> = ArrayList()
+        while (listExercise.size != 0){
+            holder.add(listExercise.first())
+            listExercise.removeFirst()
+            recyclerView.adapter?.notifyDataSetChanged()
+        }
+        while ( holder.size != 0){
+            holder = holder.sortedByDescending {it.name.first() } as ArrayList<Exercise>
+            listExercise.add(holder.first())
+            holder.removeFirst()
+            recyclerView.adapter?.notifyDataSetChanged()
+        }
     }
+
     @SuppressLint("SuspiciousIndentation")
     override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
         equipment = parent.getItemAtPosition(position).toString().lowercase().replace(" ","_")
@@ -280,6 +310,7 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         var ztoa = false
 
         //run through all positions in the spinner
+        //may not need the for loop wrapper- but will keep the if statements inside
         for(i in 1..position){
 
             //if the value selected in the spinner says Name (A to Z) then we set the atoz flag true and the other one false
@@ -318,7 +349,6 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 //        recyclerView.adapter?.notifyDataSetChanged()
 
 }
-
     override fun onNothingSelected(parent: AdapterView<*>?) {}
 
 //    private fun initRecyclerView(){
