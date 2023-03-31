@@ -6,6 +6,18 @@
     android:layout_height="match_parent">
 
     <Button
+        android:id="@+id/bmr"
+        android:layout_width="311dp"
+        android:layout_height="50dp"
+        android:text="Calculate BMR"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.596" />
+
+    <Button
         android:id="@+id/viewWorkoutButton"
         android:layout_width="311dp"
         android:layout_height="50dp"
@@ -23,10 +35,9 @@
         android:text="View your Stats"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.599" />
+        app:layout_constraintVertical_bias="0.679" />
 
     <TextView
         android:id="@+id/userNameTextView"

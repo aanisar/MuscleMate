@@ -40,6 +40,9 @@ class ProfileActivity : AppCompatActivity() {
             startActivity(Intent(this,OneRepMaxCalcActivity::class.java))
         }
 
+        binding.bmr.setOnClickListener {
+            startActivity(Intent(this,bmrActivity::class.java))
+        }
         binding.bottomNavigator.selectedItemId = R.id.profile
         binding.bottomNavigator.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {

@@ -1,16 +1,18 @@
 package com.lh1110642.gymgenie;
 
 public class BodyStats {
-    String height;
-    String weight;
+    String statOne;
+    String statTwo;
 
     String Stat;
 
     String uid;
 
-    public BodyStats(String height, String weight, String Stat) {
-        this.height = height;
-        this.weight = weight;
+    int age;
+
+    public BodyStats(String statOne, String statTwo, String Stat) {
+        this.statOne = statOne;
+        this.statTwo = statTwo;
         this.Stat = Stat;
         this.uid = "0000";
     }
@@ -18,12 +20,12 @@ public class BodyStats {
     public BodyStats() {
 
     }
-    public String getHeight() {
-        return height;
+    public String getstatOne() {
+        return statOne;
     }
 
-    public void setHeight(String height) {
-        this.height = height;
+    public void setstatOne(String statOne) {
+        this.statOne = statOne;
     }
 
     public String getStat() {
@@ -34,12 +36,12 @@ public class BodyStats {
         this.Stat = Stat;
     }
 
-    public String getWeight() {
-        return weight;
+    public String getstatTwo() {
+        return statTwo;
     }
 
-    public void setWeight(String weight) {
-        this.weight = weight;
+    public void setstatTwo(String statTwo) {
+        this.statTwo = statTwo;
     }
 
     public String getuid() {
@@ -49,4 +51,10 @@ public class BodyStats {
     public void setuid(String uid) {
         this.uid = uid;
     }
+
+    public void setAge(int age) {this.age = age;
+
+    }
+
+    public int getAge() {return age;}
 }

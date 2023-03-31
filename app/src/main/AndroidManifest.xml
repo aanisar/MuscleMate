@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GymGenie">
         <activity
+            android:name=".bmrActivity"
+            android:exported="false" />
+        <activity
             android:name=".OneRepMaxCalcActivity"
             android:exported="false"
             android:label="@string/title_activity_one_rep_max_calc"
@@ -58,6 +61,9 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".displayStatsActivity"
             android:exported="false" />
     </application>
 

@@ -2,6 +2,7 @@ package com.lh1110642.gymgenie
 
 import android.content.ContentValues
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -80,6 +81,15 @@ class BodyCalculationActivity : AppCompatActivity() {
         binding.saveBtn.setOnClickListener {
             bodyStats =  BodyStats(height,weight,bmi.toString())
             database(bodyStats) // something wrong with the database?
+        }
+
+        binding.btnSearch.setOnClickListener{
+
+            val uri: Uri =
+                Uri.parse("https://www.cdc.gov/healthyweight/assessing/bmi/index.html") // missing 'http://' will cause crashed
+
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
         }
 
         /*height = cmToM(height)
@@ -197,8 +207,8 @@ class BodyCalculationActivity : AppCompatActivity() {
         }
         //Writes to the database
         if (stats != null) {
-            bodyStats.setHeight(bodyStats.height)
-            bodyStats.setWeight(bodyStats.weight)
+            bodyStats.setstatOne(bodyStats.statOne)
+            bodyStats.setstatTwo(bodyStats.statTwo)
             bodyStats.setStat(bodyStats.stat)
             if (id != null) {
                 db.document(id).set(stats)
@@ -218,8 +228,8 @@ class BodyCalculationActivity : AppCompatActivity() {
 
                 for (document in documents) {
                     var valueHolder = document.toObject(BodyStats::class.java)
-                    binding.wtText.setText( valueHolder.getWeight())
-                    binding.htText.setText(valueHolder.getHeight())
+                    binding.wtText.setText( valueHolder.getstatTwo())
+                    binding.htText.setText(valueHolder.getstatOne())
 
 
                 }

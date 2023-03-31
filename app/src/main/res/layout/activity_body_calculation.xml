@@ -73,20 +73,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.261" />
 
-    <TextView
-        android:id="@+id/healthResultTextView"
-        android:layout_width="64dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="178dp"
-        android:layout_marginTop="76dp"
-        android:text="Normal"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.36"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bodyFatResultTextView"
-        tools:visibility="invisible" />
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigator"
         android:layout_width="match_parent"
@@ -100,73 +86,86 @@
         tools:layout_editor_absoluteX="-79dp" />
 
     <TextView
-        android:id="@+id/bodyFatResultTextView"
-        android:layout_width="68dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="178dp"
-        android:layout_marginTop="76dp"
-        android:text="28%"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.357"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saveBtn"
-        tools:visibility="invisible" />
-
-    <TextView
         android:id="@+id/normRangeResultTextView"
-        android:layout_width="64dp"
-        android:layout_height="23dp"
+        android:layout_width="114dp"
+        android:layout_height="26dp"
         android:layout_marginStart="178dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="4dp"
         android:text="18.5 - 24.9"
         android:textSize="18sp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintHorizontal_bias="0.411"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/healthResultTextView" />
 
     <TextView
-        android:id="@+id/normRangeTextView"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="76dp"
-        android:layout_marginEnd="178dp"
-        android:text="Normal Range:"
+        android:id="@+id/bodyFatResultTextView"
+        android:layout_width="114dp"
+        android:layout_height="26dp"
+        android:text="28%"
         android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.216"
+        app:layout_constraintHorizontal_bias="0.837"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/healthTextView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.343"
         tools:visibility="invisible" />
 
     <TextView
         android:id="@+id/healthTextView"
         android:layout_width="72dp"
         android:layout_height="27dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="178dp"
         android:text="Health:"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.354"
+        app:layout_constraintHorizontal_bias="0.281"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bodyFatTextView"
+        tools:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/normRangeTextView"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="178dp"
+        android:text="Normal Range:"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/healthTextView"
         tools:visibility="invisible" />
 
     <TextView
         android:id="@+id/bodyFatTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="178dp"
         android:text="Body Fat:"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.352"
+        app:layout_constraintHorizontal_bias="0.289"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calcBtn"
+        tools:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/healthResultTextView"
+        android:layout_width="114dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="178dp"
+        android:layout_marginTop="8dp"
+        android:text="Normal"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.411"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bodyFatResultTextView"
         tools:visibility="invisible" />
 
     <Button
@@ -180,5 +179,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.261" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="310dp"
+        android:layout_height="191dp"
+        android:autoText="false"
+        android:background="#A32196F3"
+        android:text="What Is BMI:
+        \nBody Mass Index (BMI) is a person’s weight in kilograms (or pounds) divided by the square of height in meters (or feet). A high BMI can indicate high body fatness. BMI screens for weight categories that may lead to health problems, but it does not diagnose the body fatness or health of an individual."
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.748" />
+
+    <ImageButton
+        android:id="@+id/btnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.963"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.263"
+        app:srcCompat="@android:drawable/ic_menu_info_details" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

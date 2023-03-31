@@ -20,11 +20,28 @@ class displayStatsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDisplayStatsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        binding.bottomNavigator.selectedItemId = R.id.profile
+        binding.bottomNavigator.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.anatomy -> {
+                    startActivity(Intent(this, BrowsingActivity::class.java))
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.workout -> {
+                    startActivity(Intent(this, WorkoutActivity::class.java))
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.profile -> {
+                    startActivity(Intent(this, ProfileActivity::class.java))
+                    return@setOnNavigationItemSelectedListener true
+                }
+                else -> return@setOnNavigationItemSelectedListener super.onOptionsItemSelected(menuItem)
+            }
+        }
 
         //database call
-        val userId = Firebase.auth.currentUser?.uid
-        val db = FirebaseFirestore.getInstance().collection("bmi").whereEqualTo("uid", userId)
+        var userId = Firebase.auth.currentUser?.uid
+        var db = FirebaseFirestore.getInstance().collection("bmi").whereEqualTo("uid", userId)
         db.get()
             .addOnSuccessListener { documents ->
 
@@ -32,6 +49,30 @@ class displayStatsActivity : AppCompatActivity() {
                     var valueHolder = document.toObject(BodyStats::class.java)
                     Log.w("DB_Mason", valueHolder.getStat())
                     binding.lblBMI.text = valueHolder.getStat().take(5)
+
+                }
+            }
+         userId = Firebase.auth.currentUser?.uid
+        db = FirebaseFirestore.getInstance().collection("1RM").whereEqualTo("uid", userId)
+        db.get()
+            .addOnSuccessListener { documents ->
+
+                for (document in documents) {
+                    var valueHolder = document.toObject(BodyStats::class.java)
+                    Log.w("DB_Mason", valueHolder.getStat())
+                    binding.lbl1RM.text = valueHolder.getStat().take(3)
+
+                }
+            }
+        userId = Firebase.auth.currentUser?.uid
+        db = FirebaseFirestore.getInstance().collection("BMR").whereEqualTo("uid", userId)
+        db.get()
+            .addOnSuccessListener { documents ->
+
+                for (document in documents) {
+                    var valueHolder = document.toObject(BodyStats::class.java)
+                    Log.w("DB_Mason", valueHolder.getStat())
+                    binding.lblBMR.text = valueHolder.getStat().take(4)
 
                 }
             }
@@ -46,11 +87,11 @@ class displayStatsActivity : AppCompatActivity() {
                 }
 
                 binding.btn1RM.setOnClickListener {
-                    startActivity(Intent(this, BodyCalculationActivity::class.java))
+                    startActivity(Intent(this, OneRepMaxCalcActivity::class.java))
                 }
 
                 binding.btnBMR.setOnClickListener {
-                    startActivity(Intent(this, BodyCalculationActivity::class.java))
+                    startActivity(Intent(this, bmrActivity::class.java))
                 }
 
     }
