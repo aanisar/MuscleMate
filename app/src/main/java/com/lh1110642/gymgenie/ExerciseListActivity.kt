@@ -267,11 +267,10 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
 
     }
-    private fun filterExercisesByNameZA(name: String) {
+    private fun filterExercisesByNameAZ() {
 
     }
-
-    private fun filterExercisesByNameAZ(name: String) {
+    private fun filterExercisesByNameZA() {
 
     }
     @SuppressLint("SuspiciousIndentation")
@@ -306,11 +305,11 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
         //if atoz is true then run the filter method
         if(atoz)
-            filterExercisesByNameAZ(name)
+            filterExercisesByNameAZ()
 
         //if the ztoa is true run the filter method
         if(ztoa)
-            filterExercisesByNameZA(name)
+            filterExercisesByNameZA()
 
 
         //listExercise = listExercise.filter { it.equipment == equipment } as MutableList<Exercise>
