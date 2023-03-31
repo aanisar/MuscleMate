@@ -311,7 +311,7 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
         //run through all positions in the spinner
         //may not need the for loop wrapper- but will keep the if statements inside
-        for(i in 1..position){
+//        for(i in 1..position){
 
             //if the value selected in the spinner says Name (A to Z) then we set the atoz flag true and the other one false
             if(equipment == "Name (A to Z)"){
@@ -330,7 +330,7 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
                 atoz = false
                 ztoa = false
             }
-        }
+//        }
 
         //if atoz is true then run the filter method
         if(atoz)
