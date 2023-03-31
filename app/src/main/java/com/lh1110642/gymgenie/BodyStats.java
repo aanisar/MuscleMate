@@ -4,17 +4,20 @@ public class BodyStats {
     String height;
     String weight;
 
-    String bmi;
+    String Stat;
 
-    String id;
+    String uid;
 
-    public BodyStats(String height, String weight, String bmi) {
+    public BodyStats(String height, String weight, String Stat) {
         this.height = height;
         this.weight = weight;
-        this.bmi = bmi;
-        this.id = "0000";
+        this.Stat = Stat;
+        this.uid = "0000";
     }
+    //Needed for Object decerlization, Null constructor
+    public BodyStats() {
 
+    }
     public String getHeight() {
         return height;
     }
@@ -23,12 +26,12 @@ public class BodyStats {
         this.height = height;
     }
 
-    public String getBmi() {
-        return bmi;
+    public String getStat() {
+        return Stat;
     }
 
-    public void setBmi(String bmi) {
-        this.bmi = bmi;
+    public void setStat(String Stat) {
+        this.Stat = Stat;
     }
 
     public String getWeight() {
@@ -39,11 +42,11 @@ public class BodyStats {
         this.weight = weight;
     }
 
-    public String getId() {
-        return id;
+    public String getuid() {
+        return uid;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setuid(String uid) {
+        this.uid = uid;
     }
 }

@@ -1,5 +1,6 @@
 package com.lh1110642.gymgenie
 
+import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -28,6 +29,11 @@ class BodyCalculationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBodyCalculationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        databaseRead()
+
+
         binding.bottomNavigator.selectedItemId = R.id.profile
         binding.bottomNavigator.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -160,25 +166,65 @@ class BodyCalculationActivity : AppCompatActivity() {
 
 
     fun database(stats: BodyStats){
-        val db = FirebaseFirestore.getInstance().collection("bmi")
 
-        val id = Firebase.auth.currentUser?.uid
+        var userId = Firebase.auth.currentUser?.uid
+        var db = FirebaseFirestore.getInstance().collection("bmi")
+        if (userId != null) {
+            db.document(userId)
+                .delete()
+                .addOnSuccessListener { Log.d(ContentValues.TAG, "DB_DELETE COMPLETE")
+
+                }
+                .addOnFailureListener { e ->
+                    Log.w(
+                        ContentValues.TAG,
+                        "Error deleting document",
+                        e
+                    )
+
+
+                }
+        }
+
+
+        db = FirebaseFirestore.getInstance().collection("bmi")
+
+        var id = Firebase.auth.currentUser?.uid
 
         Log.w("DB_Parth", auth.currentUser!!.uid)
         if (stats != null) { //Gets the users ID
-            stats.setId(auth.currentUser!!.uid)
+            stats.setuid(auth.currentUser!!.uid)
         }
         //Writes to the database
         if (stats != null) {
             bodyStats.setHeight(bodyStats.height)
             bodyStats.setWeight(bodyStats.weight)
-            bodyStats.setBmi(bodyStats.bmi)
+            bodyStats.setStat(bodyStats.stat)
             if (id != null) {
                 db.document(id).set(stats)
                     .addOnSuccessListener {  Log.w("DB_Parth", "ADDED") }
                     .addOnFailureListener{ Log.w("DB_Fail", it.localizedMessage)}
             }
         }
+
+
+    }
+    fun databaseRead(){
+        //database call
+        val userId = Firebase.auth.currentUser?.uid
+        val db = FirebaseFirestore.getInstance().collection("bmi").whereEqualTo("uid", userId)
+        db.get()
+            .addOnSuccessListener { documents ->
+
+                for (document in documents) {
+                    var valueHolder = document.toObject(BodyStats::class.java)
+                    binding.wtText.setText( valueHolder.getWeight())
+                    binding.htText.setText(valueHolder.getHeight())
+
+
+                }
+            }
+
 
 
     }

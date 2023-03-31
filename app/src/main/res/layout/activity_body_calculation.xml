@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="16dp"
+        android:editable="true"
         android:ems="10"
         android:hint="150"
         android:inputType="number"
@@ -20,24 +21,13 @@
         app:layout_constraintStart_toEndOf="@+id/weighttextview2"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/heighttextview2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:text="Height (cm):"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.11"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/htText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="2dp"
+        android:editable="true"
         android:ems="10"
         android:hint="180"
         android:inputType="number"
@@ -46,18 +36,30 @@
         app:layout_constraintStart_toEndOf="@+id/heighttextview2"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
         android:id="@+id/weighttextview2"
         android:layout_width="124dp"
         android:layout_height="30dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="112dp"
         android:text="Weight (lbs):"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.114"
+        app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/heighttextview2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Height (cm):"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/calcBtn"
@@ -66,9 +68,106 @@
         android:text="Calculate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.192"
+        app:layout_constraintHorizontal_bias="0.095"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.261" />
+
+    <TextView
+        android:id="@+id/healthResultTextView"
+        android:layout_width="64dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="178dp"
+        android:layout_marginTop="76dp"
+        android:text="Normal"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bodyFatResultTextView"
+        tools:visibility="invisible" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        app:itemBackground="@color/purple_500"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/main_menu"
+        tools:layout_editor_absoluteX="-79dp" />
+
+    <TextView
+        android:id="@+id/bodyFatResultTextView"
+        android:layout_width="68dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="178dp"
+        android:layout_marginTop="76dp"
+        android:text="28%"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.357"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/saveBtn"
+        tools:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/normRangeResultTextView"
+        android:layout_width="64dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="178dp"
+        android:layout_marginTop="76dp"
+        android:text="18.5 - 24.9"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/healthResultTextView" />
+
+    <TextView
+        android:id="@+id/normRangeTextView"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="178dp"
+        android:text="Normal Range:"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.216"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/healthTextView"
+        tools:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/healthTextView"
+        android:layout_width="72dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="178dp"
+        android:text="Health:"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.354"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bodyFatTextView"
+        tools:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/bodyFatTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="178dp"
+        android:text="Body Fat:"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.352"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calcBtn"
+        tools:visibility="invisible" />
 
     <Button
         android:id="@+id/saveBtn"
@@ -77,96 +176,9 @@
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.736"
+        app:layout_constraintHorizontal_bias="0.731"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.261" />
 
-    <TextView
-        android:id="@+id/bodyFatTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
-        android:layout_marginEnd="178dp"
-        android:text="Body Fat:"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calcBtn"
-        tools:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/healthTextView"
-        android:layout_width="72dp"
-        android:layout_height="27dp"
-        android:layout_marginTop="75dp"
-        android:layout_marginEnd="178dp"
-        android:text="Health:"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bodyFatTextView"
-        tools:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/normRangeTextView"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="75dp"
-        android:layout_marginEnd="178dp"
-        android:text="Normal Range:"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/healthTextView"
-        tools:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/bodyFatResultTextView"
-        android:layout_width="68dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="178dp"
-        android:layout_marginTop="75dp"
-        android:text="28%"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saveBtn"
-        tools:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/healthResultTextView"
-        android:layout_width="64dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="178dp"
-        android:layout_marginTop="75dp"
-        android:text="Normal"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bodyFatResultTextView"
-        tools:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/normRangeResultTextView"
-        android:layout_width="64dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="178dp"
-        android:layout_marginTop="75dp"
-        android:text="18.5 - 24.9"
-        android:textSize="18sp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/healthResultTextView" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigator"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:itemBackground="@color/purple_500"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:itemTextColor="@drawable/selector"
-        app:itemIconTint="@drawable/selector"
-        app:menu="@menu/main_menu"
-        />
 </androidx.constraintlayout.widget.ConstraintLayout>

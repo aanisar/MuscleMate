@@ -68,7 +68,7 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         diff = intent.getStringExtra("difficulty").toString()
         type = intent.getStringExtra("type").toString()
         equipment = intent.getStringExtra("equipment").toString()
-
+        listExercise.clear()
         apiCall()
         exerciseList.addAll(listExercise)
 
@@ -159,7 +159,7 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
             }
         }
 
-        var url = "https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises" + APIMod;
+        var url = " https://api.api-ninjas.com/v1/exercises" + APIMod;
         //"https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises?muscle=biceps
         Thread { //Thread that runs networking in aysnc
 
@@ -168,17 +168,20 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
             val request = Request.Builder()
                 .url(url)
                 .get()
-                .addHeader("X-RapidAPI-Key", "088a03c490mshbabdd39f3567b25p1b021ajsnd500a6f71c98")
-               // .addHeader("X-RapidAPI-Key", "2J0K5sCKdQmqfU9GdHRtrPqGxMKde7OerW2roLJY")
-                   .addHeader("X-RapidAPI-Host", "exercises-by-api-ninjas.p.rapidapi.com")
+               // .addHeader("X-RapidAPI-Key", "088a03c490mshbabdd39f3567b25p1b021ajsnd500a6f71c98")
+                .addHeader("X-Api-Key", "2J0K5sCKdQmqfU9GdHRtrPqGxMKde7OerW2roLJY")
+                 //  .addHeader("X-RapidAPI-Host", "exercises-by-api-ninjas.p.rapidapi.com")
+                .addHeader("offset", "10")
                 .build()
+
 
             try {
 
                 //Calls API, then converts into a Gson() into a string
                 val response = client.newCall(request).execute()
+                Log.i("DB_Mason:", response.toString())
                 val result: String = Gson().toJson(response.body!!.string())
-
+                Log.i("DB_Mason:", result.toString())
                 val x = result // set x to the result string, for substringing
 
                 //split string delimited by bracket

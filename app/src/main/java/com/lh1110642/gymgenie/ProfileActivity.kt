@@ -32,6 +32,9 @@ class ProfileActivity : AppCompatActivity() {
         binding.viewWorkoutButton.setOnClickListener {
         startActivity(Intent(this,WorkoutActivity::class.java))
         }
+        binding.viewStatsButton.setOnClickListener {
+            startActivity(Intent(this,displayStatsActivity::class.java))
+        }
 
         binding.bottomNavigator.selectedItemId = R.id.profile
         binding.bottomNavigator.setOnNavigationItemSelectedListener { menuItem ->

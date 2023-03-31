@@ -49,8 +49,8 @@
         android:layout_height="70dp"
         android:layout_marginTop="160dp"
         android:layout_marginEnd="85dp"
-        android:rotation="86"
         android:background="@android:color/transparent"
+        android:rotation="86"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -138,8 +138,8 @@
         android:layout_width="50dp"
         android:layout_height="70dp"
         android:layout_marginEnd="50dp"
-        android:background="@android:color/transparent"
         android:layout_marginBottom="20dp"
+        android:background="@android:color/transparent"
         android:rotation="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -151,8 +151,8 @@
         android:layout_width="50dp"
         android:layout_height="70dp"
         android:layout_marginStart="50dp"
-        android:background="@android:color/transparent"
         android:layout_marginBottom="20dp"
+        android:background="@android:color/transparent"
         android:rotation="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -163,8 +163,8 @@
         android:id="@+id/trap_mid_back"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:background="@android:color/transparent"
         android:layout_marginBottom="300dp"
+        android:background="@android:color/transparent"
         android:rotation="90"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -175,8 +175,8 @@
         android:id="@+id/lower_back"
         android:layout_width="80dp"
         android:layout_height="60dp"
-        android:background="@android:color/transparent"
         android:layout_marginBottom="150dp"
+        android:background="@android:color/transparent"
         android:rotation="90"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -201,8 +201,8 @@
         android:layout_width="125dp"
         android:layout_height="55dp"
         android:layout_marginStart="80dp"
-        android:background="@android:color/transparent"
         android:layout_marginBottom="200dp"
+        android:background="@android:color/transparent"
         android:rotation="90"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -227,8 +227,8 @@
         android:layout_width="100dp"
         android:layout_height="60dp"
         android:layout_marginTop="400dp"
-        android:background="@android:color/transparent"
         android:layout_marginEnd="105dp"
+        android:background="@android:color/transparent"
         android:rotation="90"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -250,33 +250,33 @@
         android:id="@+id/swap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="250dp"
-        android:layout_marginTop="500dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.898"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.09"
         app:srcCompat="@drawable/swap" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemBackground="@color/purple_500"        app:layout_constraintBottom_toBottomOf="parent"
-        app:itemTextColor="@drawable/selector"
+        app:itemBackground="@color/purple_500"
         app:itemIconTint="@drawable/selector"
-        app:menu="@menu/main_menu"
-        />
+        app:itemTextColor="@drawable/selector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/main_menu" />
 
-<!--    <Button-->
-<!--        android:id="@+id/backbuttonbackbrowsing"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="30dp"-->
-<!--        android:layout_marginEnd="250dp"-->
-<!--        android:text="Back"-->
-<!--        android:textSize="20sp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <!--    <Button-->
+    <!--        android:id="@+id/backbuttonbackbrowsing"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="30dp"-->
+    <!--        android:layout_marginEnd="250dp"-->
+    <!--        android:text="Back"-->
+    <!--        android:textSize="20sp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>
