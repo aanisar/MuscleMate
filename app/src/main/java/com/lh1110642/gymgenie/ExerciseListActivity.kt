@@ -38,6 +38,7 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
     var auth = Firebase.auth
     var listExercise = mutableListOf<Exercise>()
     var ThreadKiller = false
+    var offset = 0;
     lateinit var recyclerView: RecyclerView
     //var MyRecyclerViewAdapter adapter
     private lateinit var binding: ActivityExerciseListBinding
@@ -49,7 +50,10 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         binding.bottomNavigator.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 com.lh1110642.gymgenie.R.id.anatomy -> {
-                    startActivity(Intent(this, BrowsingActivity::class.java))
+                    offset += 10
+                    apiCall()
+                    filterExercisesByEquipment(equipment)
+                  //  startActivity(Intent(this, BrowsingActivity::class.java))
                     return@setOnNavigationItemSelectedListener true
                 }
                 com.lh1110642.gymgenie.R.id.workout -> {
@@ -69,7 +73,9 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         type = intent.getStringExtra("type").toString()
         equipment = intent.getStringExtra("equipment").toString()
         listExercise.clear()
-        apiCall()
+
+            apiCall()
+
         exerciseList.addAll(listExercise)
 
 //
@@ -132,103 +138,90 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
                 APIMod += "&muscle="+muscle
             }
         }
-        if (diff != "")
-        {
-            if (APIMod == "")
-                APIMod = "?difficulty="+diff
-            else{
-                APIMod += "&difficulty="+diff
-            }
-        }
-        if (type != "")
-        {
-            if (APIMod == "")
-                APIMod = "?type="+type
-            else{
-                APIMod += "&type="+type
-            }
-        }
-        if (equipment != "")
-        {
-            if (APIMod == "")
-                APIMod = "?type="+equipment
-            else{
-                APIMod += "&type="+equipment
-            }
-        }
-        if (name != "")
-        {
-            name.replace(" ","%20")
-            if (APIMod == "")
-                APIMod = "?name="+name
-            else{
-                APIMod += "&name="+name
-            }
-        }
 
-        var url = " https://api.api-ninjas.com/v1/exercises" + APIMod;
+        var url = " https://api.api-ninjas.com/v1/exercises" + APIMod+"&offset="+offset.toString()
         //"https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises?muscle=biceps
         Thread { //Thread that runs networking in aysnc
-
-            //Code that calls the api, with URI and link
-            val client = OkHttpClient()
-            val request = Request.Builder()
-                .url(url)
-                .get()
-               // .addHeader("X-RapidAPI-Key", "088a03c490mshbabdd39f3567b25p1b021ajsnd500a6f71c98")
-                .addHeader("X-Api-Key", "2J0K5sCKdQmqfU9GdHRtrPqGxMKde7OerW2roLJY")
-                 //  .addHeader("X-RapidAPI-Host", "exercises-by-api-ninjas.p.rapidapi.com")
-                .addHeader("offset", "10")
-                .build()
+            while (listExercise.size < 30) {
+                var offsetCounter = -1
 
 
-            try {
-
-                //Calls API, then converts into a Gson() into a string
-                val response = client.newCall(request).execute()
-                Log.i("DB_Mason:", response.toString())
-                val result: String = Gson().toJson(response.body!!.string())
-                Log.i("DB_Mason:", result.toString())
-                val x = result // set x to the result string, for substringing
-
-                //split string delimited by bracket
-                val stringarray =
-                    x.split("},").toMutableList()
+                var url =
+                    " https://api.api-ninjas.com/v1/exercises" + APIMod + "&offset=" + offset.toString()
+                offsetCounter = listExercise.size
+                //apiCall()
 
 
-                for (i in stringarray.indices) { //Corrects each Exercise by adding bracket
-                    //prints the tokens
-                    stringarray[i] += "}"
-                }
+                //Code that calls the api, with URI and link
+                val client = OkHttpClient()
+                val request = Request.Builder()
+                    .url(url)
+                    .get()
+                    // .addHeader("X-RapidAPI-Key", "088a03c490mshbabdd39f3567b25p1b021ajsnd500a6f71c98")
+                    .addHeader("X-Api-Key", "2J0K5sCKdQmqfU9GdHRtrPqGxMKde7OerW2roLJY")
+                    //  .addHeader("X-RapidAPI-Host", "exercises-by-api-ninjas.p.rapidapi.com")
 
-                //Corrects the leading and trailing char's in the first and last member of the array
-                stringarray[0] = stringarray[0].substring(1, stringarray[0].length)
-                stringarray[stringarray.size - 1] = stringarray[stringarray.size - 1].substring(0, stringarray[stringarray.size - 1].length - 2)
+                    .build()
 
-                var counter = 0;
-                // val listExercise = arrayOfNulls<Exercise>(10)
-                for (i in stringarray.indices) {
-                    Log.i("DB_Mason:", i.toString())
-                    //Replaces the def of each exercise category, with a deliminator
-                    var str = stringarray[i]
-                    str = str.replace("\\\"name\\\":", "@!@")
-                    str = str.replace("\\\"type\\\":", "@!@")
-                    str = str.replace("\\\"muscle\\\":", "@!@")
-                    str = str.replace("\\\"equipment\\\":", "@!@")
-                    str = str.replace("\\\"difficulty\\\":", "@!@")
-                    str = str.replace("\\\"instructions\\\":", "@!@")
-                    str.replace("\"", "")
-                    val strArr = str.split("@!@") //split each category into 1 list
 
-                    if (strArr.size == 7){
-                    //Creates a exercise, then inserts it into a list
-                    val exercise = Exercise(strArr[1].substring(3, strArr[1].length - 4), strArr[2].substring(3, strArr[2].length - 4), strArr[3].substring(3, strArr[3].length - 4), strArr[4].substring(3, strArr[4].length - 4), strArr[5].substring(3, strArr[5].length - 4), strArr[6].substring(3, strArr[6].length - 4))
-                    listExercise.add(exercise)
+                try {
 
+                    //Calls API, then converts into a Gson() into a string
+                    val response = client.newCall(request).execute()
+                    Log.i("DB_Mason:", response.toString())
+                    val result: String = Gson().toJson(response.body!!.string())
+                    Log.i("DB_Mason!!!!!!!!!!!:", listExercise.size.toString())
+                    val x = result // set x to the result string, for substringing
+
+                    //split string delimited by bracket
+                    val stringarray =
+                        x.split("},").toMutableList()
+
+
+                    for (i in stringarray.indices) { //Corrects each Exercise by adding bracket
+                        //prints the tokens
+                        stringarray[i] += "}"
                     }
-                }
 
-                //Just displays the list for viewing purpose, NOT NEEDED
+                    //Corrects the leading and trailing char's in the first and last member of the array
+                    stringarray[0] = stringarray[0].substring(1, stringarray[0].length)
+                    stringarray[stringarray.size - 1] = stringarray[stringarray.size - 1].substring(
+                        0,
+                        stringarray[stringarray.size - 1].length - 2
+                    )
+
+                    var counter = 0;
+                    // val listExercise = arrayOfNulls<Exercise>(10)
+                    for (i in stringarray.indices) {
+                        Log.i("DB_Mason:", i.toString())
+                        //Replaces the def of each exercise category, with a deliminator
+                        var str = stringarray[i]
+                        str = str.replace("\\\"name\\\":", "@!@")
+                        str = str.replace("\\\"type\\\":", "@!@")
+                        str = str.replace("\\\"muscle\\\":", "@!@")
+                        str = str.replace("\\\"equipment\\\":", "@!@")
+                        str = str.replace("\\\"difficulty\\\":", "@!@")
+                        str = str.replace("\\\"instructions\\\":", "@!@")
+                        str.replace("\"", "")
+                        val strArr = str.split("@!@") //split each category into 1 list
+
+                        if (strArr.size == 7) {
+                            //Creates a exercise, then inserts it into a list
+                            val exercise = Exercise(
+                                strArr[1].substring(3, strArr[1].length - 4),
+                                strArr[2].substring(3, strArr[2].length - 4),
+                                strArr[3].substring(3, strArr[3].length - 4),
+                                strArr[4].substring(3, strArr[4].length - 4),
+                                strArr[5].substring(3, strArr[5].length - 4),
+                                strArr[6].substring(3, strArr[6].length - 4)
+                            )
+                            listExercise.add(exercise)
+
+                        }
+                    }
+                    offset +=10
+
+                    //Just displays the list for viewing purpose, NOT NEEDED
 //                println(listExercise[3]!!.excerciseToString())
 //                for (i in stringarray.indices) {
 //                    //prints the tokens
@@ -238,8 +231,10 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 //                }
 //                Log.i("Name: ", listExercise[3]!!.excerciseToString())
 
-            }catch (err:Error) {//if call fails
-                Log.i("error","ERRRRRRRRRRRR")
+                } catch (err: Error) {//if call fails
+                    Log.i("error", "ERRRRRRRRRRRR")
+                }
+
             }
             ThreadKiller = true;
         }.start()
