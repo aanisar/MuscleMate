@@ -36,6 +36,10 @@ class ProfileActivity : AppCompatActivity() {
             startActivity(Intent(this,displayStatsActivity::class.java))
         }
 
+        binding.oneMaxRepBtn.setOnClickListener {
+            startActivity(Intent(this,OneRepMaxCalcActivity::class.java))
+        }
+
         binding.bottomNavigator.selectedItemId = R.id.profile
         binding.bottomNavigator.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {

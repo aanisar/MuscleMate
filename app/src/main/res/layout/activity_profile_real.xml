@@ -75,5 +75,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/main_menu" />
 
+    <Button
+        android:id="@+id/oneMaxRepBtn"
+        android:layout_width="311dp"
+        android:layout_height="50dp"
+        android:text="Calculate One Max Rep"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.478" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,8 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GymGenie">
         <activity
-            android:name=".displayStatsActivity"
-            android:exported="false" />
+            android:name=".OneRepMaxCalcActivity"
+            android:exported="false"
+            android:label="@string/title_activity_one_rep_max_calc"
+            android:theme="@style/Theme.GymGenie.NoActionBar" />
         <activity
             android:name=".BodyCalculationActivity"
             android:exported="false" />
