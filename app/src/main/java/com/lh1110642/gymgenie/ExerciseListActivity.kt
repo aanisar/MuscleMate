@@ -92,11 +92,10 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
         val equipmentSet = mutableSetOf<String>()
         //all starts at position 0 in the spinner
-        equipmentSet.add("All")
         //adding a-z at position 7 of spinner
-        equipmentSet.add("A to Z")
+        equipmentSet.add("All (A to Z)")
         //adding z-a at position 8 of spinner
-        equipmentSet.add("Z to A")
+        equipmentSet.add("All (Z to A)")
 
         //exercises take up positions 1-6
         for (exercise in listExercise) {
@@ -248,38 +247,47 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
     }
 
     fun recyclerClicked(view: View) {}
-    private fun filterExercisesByEquipment(equipmentName: String) {
-        listExercise.clear()
-        when (equipmentName) {
-            "z_to_a" -> {
-                listExercise.addAll(exerciseList)
-                exerciseList.sortBy { it.name }
-
-            }
-            "a_to_z" -> {
-                listExercise.addAll(exerciseList)
-                exerciseList.sortByDescending { it.name }
-            }
-            else -> {
-                listExercise.addAll(exerciseList)
-            }
-        }
-        var holder: ArrayList<Exercise> = ArrayList()
-        while (listExercise.size != 0){
-            holder.add(listExercise.first())
-            listExercise.removeFirst()
-            recyclerView.adapter?.notifyDataSetChanged()
-        }
-        if(equipmentName != "all" && equipmentName != "a_to_z" && equipmentName != "z_to_a")
-            holder = holder.filter { it.equipment == equipment } as ArrayList<Exercise>
-        while ( holder.size != 0){
-            listExercise.add(holder.first())
-            holder.removeFirst()
-            recyclerView.adapter?.notifyDataSetChanged()
-        }
-
-
+//    private fun filterExercisesByEquipment(equipmentName: String) {
+//        when (equipmentName) {
+//            "all__a_to_z_" -> {
+//                listExercise.clear()
+//                listExercise.addAll(exerciseList)
+//                exerciseList.sortByDescending { it.name }
+//            }
+//            "all__z_to_a_" -> {
+//                listExercise.clear()
+//                listExercise.addAll(exerciseList)
+//                exerciseList.sortBy { it.name }
+//            }
+//        }
+//        var holder: ArrayList<Exercise> = ArrayList()
+//        while (listExercise.size != 0){
+//            holder.add(listExercise.first())
+//            listExercise.removeFirst()
+//            recyclerView.adapter?.notifyDataSetChanged()
+//        }
+//        if(equipmentName != "all__a_to_z_" && equipmentName != "all__z_to_a_")
+//            holder = holder.filter { it.equipment == equipment } as ArrayList<Exercise>
+//        while ( holder.size != 0){
+//            listExercise.add(holder.first())
+//            holder.removeFirst()
+//            recyclerView.adapter?.notifyDataSetChanged()
+//        }
+//
+//
+//    }
+private fun filterExercisesByEquipment(equipmentName: String) {
+    val sortedExerciseList = when (equipmentName) {
+        "all__a_to_z_" -> exerciseList.sortedBy { it.name }
+        "all__z_to_a_" -> exerciseList.sortedByDescending { it.name }
+        else -> exerciseList.filter { it.equipment == equipmentName }.sortedBy { it.name }
     }
+
+    listExercise.clear()
+    listExercise.addAll(sortedExerciseList)
+
+    recyclerView.adapter?.notifyDataSetChanged()
+}
 
     private fun filterExercisesByNameAZ() {
         listExercise.clear()
@@ -317,7 +325,7 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
     @SuppressLint("SuspiciousIndentation")
     override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-        equipment = parent.getItemAtPosition(position).toString().lowercase().replace(" ","_")
+        equipment = parent.getItemAtPosition(position).toString().lowercase().replace(" ","_").replace("(","_").replace(")","_")
             filterExercisesByEquipment(equipment)
 
 //        var atoz = false
