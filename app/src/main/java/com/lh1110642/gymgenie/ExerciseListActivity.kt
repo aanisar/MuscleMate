@@ -93,6 +93,10 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         val equipmentSet = mutableSetOf<String>()
         //all starts at position 0 in the spinner
         equipmentSet.add("All")
+        //adding a-z at position 7 of spinner
+        equipmentSet.add("A to Z")
+        //adding z-a at position 8 of spinner
+        equipmentSet.add("Z to A")
 
         //exercises take up positions 1-6
         for (exercise in listExercise) {
@@ -101,10 +105,7 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
                 equipmentSet.addAll(equipmentStrings.map { it.trim() })
             }
         }
-        //adding a-z at position 7 of spinner
-        equipmentSet.add("Name (A to Z)")
-        //adding z-a at position 8 of spinner
-        equipmentSet.add("Name (Z to A)")
+
         val equipmentList = equipmentSet.toList()
 
         var adapter = ArrayAdapter(this,R.layout.simple_spinner_item, equipmentList)
@@ -249,14 +250,27 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
     fun recyclerClicked(view: View) {}
     private fun filterExercisesByEquipment(equipmentName: String) {
         listExercise.clear()
-        listExercise.addAll(exerciseList)
+        when (equipmentName) {
+            "z_to_a" -> {
+                listExercise.addAll(exerciseList)
+                exerciseList.sortBy { it.name }
+
+            }
+            "a_to_z" -> {
+                listExercise.addAll(exerciseList)
+                exerciseList.sortByDescending { it.name }
+            }
+            else -> {
+                listExercise.addAll(exerciseList)
+            }
+        }
         var holder: ArrayList<Exercise> = ArrayList()
         while (listExercise.size != 0){
             holder.add(listExercise.first())
             listExercise.removeFirst()
             recyclerView.adapter?.notifyDataSetChanged()
         }
-        if(equipmentName != "all")
+        if(equipmentName != "all" && equipmentName != "a_to_z" && equipmentName != "z_to_a")
             holder = holder.filter { it.equipment == equipment } as ArrayList<Exercise>
         while ( holder.size != 0){
             listExercise.add(holder.first())
@@ -306,39 +320,39 @@ class ExerciseListActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         equipment = parent.getItemAtPosition(position).toString().lowercase().replace(" ","_")
             filterExercisesByEquipment(equipment)
 
-        var atoz = false
-        var ztoa = false
-
-        //run through all positions in the spinner
-        //may not need the for loop wrapper- but will keep the if statements inside
-//        for(i in 1..position){
-
-            //if the value selected in the spinner says Name (A to Z) then we set the atoz flag true and the other one false
-            if(equipment == "Name (A to Z)"){
-                atoz = true
-                ztoa = false
-            }
-
-            //if the value selected in the spinner says Name (Z to A) then we set the ztoa flag true and the pther one false
-            if(equipment == "Name (Z to A)"){
-                atoz = false
-                ztoa = true
-            }
-
-            //if something else is clicked other than the 2 things maintain false flags
-            else{
-                atoz = false
-                ztoa = false
-            }
-//        }
-
-        //if atoz is true then run the filter method
-        if(atoz)
-            filterExercisesByNameAZ()
-
-        //if the ztoa is true run the filter method
-        if(ztoa)
-            filterExercisesByNameZA()
+//        var atoz = false
+//        var ztoa = false
+//
+//        //run through all positions in the spinner
+//        //may not need the for loop wrapper- but will keep the if statements inside
+////        for(i in 1..position){
+//
+//            //if the value selected in the spinner says Name (A to Z) then we set the atoz flag true and the other one false
+//            if(equipment == "Name (A to Z)"){
+//                atoz = true
+//                ztoa = false
+//            }
+//
+//            //if the value selected in the spinner says Name (Z to A) then we set the ztoa flag true and the pther one false
+//            if(equipment == "Name (Z to A)"){
+//                atoz = false
+//                ztoa = true
+//            }
+//
+//            //if something else is clicked other than the 2 things maintain false flags
+//            else{
+//                atoz = false
+//                ztoa = false
+//            }
+////        }
+//
+//        //if atoz is true then run the filter method
+//        if(atoz)
+//            filterExercisesByNameAZ()
+//
+//        //if the ztoa is true run the filter method
+//        if(ztoa)
+//            filterExercisesByNameZA()
 
 
         //listExercise = listExercise.filter { it.equipment == equipment } as MutableList<Exercise>
