@@ -43,6 +43,15 @@ class ProfileActivity : AppCompatActivity() {
         binding.bmr.setOnClickListener {
             startActivity(Intent(this,bmrActivity::class.java))
         }
+
+        binding.signOutButton.setOnClickListener {
+            AuthUI.getInstance()
+                .signOut(this)
+                .addOnCompleteListener {
+                    startActivity(Intent(this, LoginActivity::class.java))
+                }
+        }
+
         binding.bottomNavigator.selectedItemId = R.id.profile
         binding.bottomNavigator.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
