@@ -80,7 +80,8 @@ class BodyCalculationActivity : AppCompatActivity() {
 
         binding.saveBtn.setOnClickListener {
             bodyStats =  BodyStats(height,weight,bmi.toString())
-            database(bodyStats) // something wrong with the database?
+            database(bodyStats)
+            Toast.makeText(this,  "Successfully added to the database", Toast.LENGTH_LONG).show()
         }
 
         binding.btnSearch.setOnClickListener{

@@ -117,8 +117,12 @@ class bmrActivity : AppCompatActivity() {
         }
 
         binding.bmrSave.setOnClickListener {
-            if(flag == 1)
+            if(flag == 1) {
                 database(bodyStats)
+                Toast.makeText(this,  "Successfully added to the database", Toast.LENGTH_LONG).show()
+            }
+            else
+                Toast.makeText(this,  "Fields might be empty", Toast.LENGTH_LONG).show()
         }
 
 

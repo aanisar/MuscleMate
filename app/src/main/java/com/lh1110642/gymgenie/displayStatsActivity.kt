@@ -77,11 +77,6 @@ class displayStatsActivity : AppCompatActivity() {
                 }
             }
 
-
-
-
-
-
                 binding.btnBMI.setOnClickListener {
                     startActivity(Intent(this, BodyCalculationActivity::class.java))
                 }

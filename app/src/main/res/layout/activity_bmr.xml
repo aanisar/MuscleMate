@@ -47,8 +47,8 @@
 
     <TextView
         android:id="@+id/textView14"
-        android:layout_width="105dp"
-        android:layout_height="31dp"
+        android:layout_width="113dp"
+        android:layout_height="54dp"
         android:text="Mild Weight Loss Target:"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -107,7 +107,7 @@
         android:hint="25"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintHorizontal_bias="0.701"
         app:layout_constraintStart_toEndOf="@+id/weighttextview2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -152,19 +152,18 @@
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="141dp"
-        android:layout_height="200dp"
+        android:layout_width="134dp"
+        android:layout_height="223dp"
         android:autoText="false"
         android:background="#A32196F3"
-        android:text="What Is BMR:
-        \nBasal metabolic rate is the number of calories your body needs to accomplish its most basic (basal) life-sustaining functions."
+        android:text="Basal metabolic rate is the number of calories your body needs to accomplish its most basic (basal) life-sustaining functions."
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.922"
+        app:layout_constraintHorizontal_bias="0.942"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.804" />
+        app:layout_constraintVertical_bias="0.848" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigator"
@@ -240,8 +239,8 @@
 
         <RadioButton
             android:id="@+id/rbtnC"
-            android:layout_width="160dp"
-            android:layout_height="42dp"
+            android:layout_width="157dp"
+            android:layout_height="wrap_content"
             android:text="Moderate: Exercise 5 times a Week"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -304,14 +303,14 @@
         android:id="@+id/wtText"
         android:layout_width="207dp"
         android:layout_height="46dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="16dp"
         android:editable="true"
         android:ems="10"
         android:hint="150"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.701"
         app:layout_constraintStart_toEndOf="@+id/weighttextview2"
         app:layout_constraintTop_toTopOf="parent" />
 

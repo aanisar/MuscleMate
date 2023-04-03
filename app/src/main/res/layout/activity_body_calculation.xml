@@ -195,8 +195,8 @@
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="310dp"
-        android:layout_height="191dp"
+        android:layout_width="309dp"
+        android:layout_height="240dp"
         android:autoText="false"
         android:background="#A32196F3"
         android:text="What Is BMI:
@@ -206,7 +206,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.748" />
+        app:layout_constraintVertical_bias="0.841" />
 
     <TextView
         android:id="@+id/bmiTitleTextView"

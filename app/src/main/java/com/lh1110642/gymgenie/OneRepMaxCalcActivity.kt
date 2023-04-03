@@ -75,10 +75,16 @@ class OneRepMaxCalcActivity : AppCompatActivity() {
 
             }
         }
+
         binding.onerepmaxSaveBtn.setOnClickListener {
-            if(bodyStats.statOne.isNotEmpty())
+            if(bodyStats.statOne.isNotEmpty()) {
                 database(bodyStats)
+                Toast.makeText(this,  "Successfully added to the database", Toast.LENGTH_LONG).show()
+            }
+            else
+                Toast.makeText(this,  "Fields are empty", Toast.LENGTH_LONG).show()
         }
+
         binding.btnSearch2.setOnClickListener{
 
             val uri: Uri =
