@@ -15,8 +15,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="13dp"
         android:layout_marginTop="30dp"
+        android:layout_marginEnd="13dp"
         android:layout_marginBottom="60dp"
         android:onClick="recyclerClicked"
         tools:ignore="OnClick"
@@ -32,12 +32,12 @@
         android:id="@+id/bottom_navigator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemBackground="@color/purple_500"        app:layout_constraintBottom_toBottomOf="parent"
-        app:itemTextColor="@drawable/selector"
-        app:itemIconTint="@drawable/selector"
-        app:menu="@menu/main_menu"
         android:layout_alignParentBottom="true"
-        />
+        app:itemBackground="@color/blue"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/main_menu" />
 
 
 </RelativeLayout>
