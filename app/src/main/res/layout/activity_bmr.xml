@@ -8,11 +8,11 @@
 
     <TextView
         android:id="@+id/textView15"
-        android:layout_width="105dp"
-        android:layout_height="31dp"
+        android:layout_width="106dp"
+        android:layout_height="57dp"
         android:fontFamily="@font/montserrat"
         android:text="Moderate Weight Loss Target:"
-        android:textSize="10sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.047"
@@ -128,7 +128,7 @@
         android:hint="180"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.645"
+        app:layout_constraintHorizontal_bias="0.734"
         app:layout_constraintStart_toEndOf="@+id/heighttextview2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -160,19 +160,19 @@
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="134dp"
-        android:layout_height="223dp"
+        android:layout_width="135dp"
+        android:layout_height="153dp"
         android:autoText="false"
         android:background="#A32196F3"
         android:fontFamily="@font/montserrat"
         android:text="Basal metabolic rate is the number of calories your body needs to accomplish its most basic (basal) life-sustaining functions."
-        android:textSize="17sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.942"
+        app:layout_constraintHorizontal_bias="0.895"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.848" />
+        app:layout_constraintVertical_bias="0.736" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigator"
