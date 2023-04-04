@@ -87,56 +87,56 @@
 
     <Button
         android:id="@+id/btnClearFour"
-        android:layout_width="87dp"
-        android:layout_height="38dp"
+        android:layout_width="113dp"
+        android:layout_height="42dp"
         android:layout_marginStart="32dp"
         android:fontFamily="@font/montserrat"
         android:text="Clear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.91"
+        app:layout_constraintHorizontal_bias="0.785"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.746" />
 
     <Button
         android:id="@+id/btnClearThree"
-        android:layout_width="87dp"
-        android:layout_height="38dp"
+        android:layout_width="113dp"
+        android:layout_height="42dp"
         android:layout_marginStart="32dp"
         android:fontFamily="@font/montserrat"
         android:text="Clear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.91"
+        app:layout_constraintHorizontal_bias="0.785"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.522" />
 
     <Button
         android:id="@+id/btnClearOne"
-        android:layout_width="87dp"
-        android:layout_height="38dp"
+        android:layout_width="113dp"
+        android:layout_height="42dp"
         android:layout_marginStart="32dp"
         android:fontFamily="@font/montserrat"
         android:text="Clear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.907"
+        app:layout_constraintHorizontal_bias="0.785"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.02" />
 
     <Button
         android:id="@+id/btnClearTwo"
-        android:layout_width="87dp"
-        android:layout_height="38dp"
+        android:layout_width="113dp"
+        android:layout_height="42dp"
         android:layout_marginStart="32dp"
         android:fontFamily="@font/montserrat"
         android:text="Clear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.91"
+        app:layout_constraintHorizontal_bias="0.785"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.261" />

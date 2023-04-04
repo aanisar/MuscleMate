@@ -21,8 +21,8 @@
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="309dp"
-        android:layout_height="201dp"
+        android:layout_width="328dp"
+        android:layout_height="246dp"
         android:layout_marginTop="64dp"
         android:autoText="false"
         android:background="#A32196F3"
@@ -32,19 +32,21 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.686" />
+        app:layout_constraintVertical_bias="0.733" />
 
     <TextView
         android:id="@+id/onerepmaxResult"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
+        android:layout_width="125dp"
+        android:layout_height="42dp"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/montserrat"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.757"
+        app:layout_constraintHorizontal_bias="0.748"
+        app:layout_constraintVertical_bias="0.115"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/wtLiftedText" />
 
@@ -76,18 +78,18 @@
 
     <EditText
         android:id="@+id/repsText"
-        android:layout_width="125dp"
-        android:layout_height="42dp"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
         android:ems="10"
         android:fontFamily="@font/montserrat"
         android:hint="5"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.692"
+        app:layout_constraintHorizontal_bias="0.748"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.133" />
+        app:layout_constraintVertical_bias="0.115" />
 
     <TextView
         android:id="@+id/weightLiftedTextView"
@@ -105,16 +107,16 @@
 
     <EditText
         android:id="@+id/wtLiftedText"
-        android:layout_width="118dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:fontFamily="@font/montserrat"
         android:hint="15"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.207"
+        app:layout_constraintHorizontal_bias="0.350"
         app:layout_constraintStart_toEndOf="@+id/weightLiftedTextView"
         app:layout_constraintTop_toBottomOf="@+id/repsText" />
 

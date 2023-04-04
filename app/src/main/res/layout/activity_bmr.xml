@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/textView15"
-        android:layout_width="106dp"
-        android:layout_height="57dp"
+        android:layout_width="112dp"
+        android:layout_height="62dp"
         android:fontFamily="@font/montserrat"
         android:text="Moderate Weight Loss Target:"
         android:textSize="14sp"
@@ -118,9 +118,9 @@
 
     <EditText
         android:id="@+id/htText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="207dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="2dp"
         android:editable="true"
         android:ems="10"
@@ -128,14 +128,14 @@
         android:hint="180"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.734"
+        app:layout_constraintHorizontal_bias="0.701"
         app:layout_constraintStart_toEndOf="@+id/heighttextview2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/weighttextview2"
-        android:layout_width="124dp"
-        android:layout_height="30dp"
+        android:layout_width="140dp"
+        android:layout_height="33dp"
         android:layout_marginTop="64dp"
         android:fontFamily="@font/montserrat"
         android:text="Weight (lbs):"
@@ -160,8 +160,8 @@
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="135dp"
-        android:layout_height="153dp"
+        android:layout_width="129dp"
+        android:layout_height="208dp"
         android:autoText="false"
         android:background="#A32196F3"
         android:fontFamily="@font/montserrat"
@@ -169,10 +169,10 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.895"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.736" />
+        app:layout_constraintVertical_bias="0.756" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigator"
